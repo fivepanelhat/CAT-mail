@@ -291,7 +291,7 @@ cat-mail/
 1. **Read**: [PRIVACY_NOTICE.md](PRIVACY_NOTICE.md) for complete policy
 2. **Understand**: [FIVE_WS.md](FIVE_WS.md) for the full picture
 3. **Verify**: Check the source code in `src/security/` for enforcement
-4. **Contact**: compliance@coastalalpine.tech
+4. **Contact**: fivepanelhat@gmail.com
 
 ## 📜 License
 
