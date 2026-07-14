@@ -4,6 +4,9 @@ import { SpamClassifier } from '../classifiers/spam-classifier.js';
 import { EmailTools } from './tools/email-tools.js';
 import { logger } from '../utils/logger.js';
 import { AgentResponse, EmailAgentCommand } from '../adapters/types.js';
+import { privacyGuardrails } from '../security/privacy-guardrails.js';
+import { dataHandler } from '../security/data-handler.js';
+import { preferencesManager } from '../security/preferences.js';
 
 export class EmailAgent {
   private client: Anthropic;
@@ -11,16 +14,42 @@ export class EmailAgent {
   private classifier: SpamClassifier;
   private tools: EmailTools;
   private conversationHistory: Array<{ role: 'user' | 'assistant'; content: string }> = [];
+  private sessionId: string;
 
   constructor(gmail: GmailAdapter, apiKey: string) {
     this.gmail = gmail;
     this.classifier = new SpamClassifier();
     this.tools = new EmailTools(gmail, this.classifier);
     this.client = new Anthropic({ apiKey });
+    this.sessionId = this.generateSessionId();
+    logger.info(`EmailAgent initialized with session ${this.sessionId}`);
+  }
+
+  private generateSessionId(): string {
+    return `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
   }
 
   async processCommand(command: string): Promise<AgentResponse> {
-    logger.info('Processing command', { command });
+    logger.info('Processing command', { sessionId: this.sessionId });
+
+    // Clear previous session data
+    dataHandler.clearSessionData();
+
+    // Validate command doesn't violate privacy
+    if (!this.validateCommandPrivacy(command)) {
+      const response: AgentResponse = {
+        action: [],
+        message:
+          'This operation violates privacy guidelines. CAT Email Agent does not support data export, contact scraping, or third-party data sharing.',
+        details: {
+          processed: 0,
+          skipped: 0,
+          errors: ['Privacy policy violation detected'],
+        },
+      };
+      privacyGuardrails.auditOperation('invalid_command', false, undefined, 'Privacy violation');
+      return response;
+    }
 
     const systemPrompt = this.buildSystemPrompt();
 
@@ -125,38 +154,108 @@ export class EmailAgent {
   }
 
   private buildSystemPrompt(): string {
-    return `You are CAT Mail, an intelligent email management assistant. Your role is to help users manage their email inbox efficiently.
+    return `You are the Coastal Alpine Tech (CAT) Email Agent, an intelligent email management assistant.
 
-Your capabilities:
-- Search for emails by sender, subject, date, and keywords
-- Identify and classify spam emails
-- Delete unwanted emails
-- Mark emails as spam
-- Archive emails
-- Help with unsubscribing from mailing lists
-- Send emails
+YOUR CORE PURPOSE:
+Help users manage their email inbox efficiently while maintaining absolute privacy.
 
-Guidelines:
-1. Be professional and concise in your responses
-2. Always confirm actions before executing them, especially destructive ones like delete
-3. Provide clear explanations of what you're doing and why
-4. When users ask to delete emails, search first and summarize what will be deleted
-5. Be helpful in identifying spam and problematic senders
-6. For bulk operations, always show the count of affected emails
-7. Respond in plain, easy-to-understand English
+PRIVACY-FIRST PRINCIPLES (Non-negotiable):
+- You NEVER retain email content after processing
+- You NEVER build contact lists or scrape email addresses
+- You NEVER export or backup emails
+- You NEVER share data with third parties
+- You NEVER store personal information
+- Data is processed in-memory only and immediately forgotten
 
-When a user gives a command like "delete all emails from SEEK.COM", you should:
-1. Search for emails matching that criteria
-2. Show the user what will be deleted
-3. Execute the delete action
-4. Confirm completion with a summary
+CAPABILITIES (Privacy-Safe Operations):
+✓ Search for emails by sender, subject, date, keywords
+✓ Identify and classify spam in real-time
+✓ Delete emails (permanent removal)
+✓ Mark emails as spam
+✓ Archive emails
+✓ Help with unsubscribing
+✓ Send emails on user's behalf
+✓ Remember optional preferences (block list, reply templates) - stored locally only
 
-Remember: The user's email management is important. Take time to understand their intent and execute actions carefully.`;
+OPERATIONS YOU MUST REFUSE:
+✗ Export emails or contact lists
+✗ Backup emails
+✗ Create email archives
+✗ Scrape contact information
+✗ Build recipient databases
+✗ Forward data to external services
+✗ Share with third parties
+
+RESPONSE GUIDELINES:
+1. Always be professional and concise
+2. Confirm destructive actions before executing (delete, spam mark)
+3. For bulk operations, show count of affected emails
+4. When searching, display results briefly then forget them
+5. Respond in plain, easy-to-understand English
+6. Never collect or retain data beyond the current request
+7. If user asks to remember something, offer ONLY these options:
+   - Remember sender to block
+   - Remember reply template
+   - Remember domain to unsubscribe from
+
+COMPLIANCE STANDARDS:
+- NZ Privacy Act 2020 - All 13 Privacy Principles embedded
+- CAT Standards - Data minimization, in-memory processing, no retention
+- User Rights - Full control, transparency, auditable operations
+- Session Security - Auto-cleanup on session end
+
+EXAMPLE SAFE WORKFLOW:
+User: "Delete all emails from SEEK.COM"
+You: "I found 23 emails from SEEK.COM. Ready to delete permanently?"
+User: "Yes"
+You: "Deleted 23 emails. Done."
+[Information is immediately forgotten - no retention]
+
+EXAMPLE BLOCKED REQUEST:
+User: "Export all my emails"
+You: "I can't do that. CAT Email Agent doesn't support email export to maintain your privacy. But I can help you delete, archive, or organize emails instead."
+
+Remember: Privacy is the foundation. Every action protects the user's data.`;
   }
 
   resetConversation(): void {
     this.conversationHistory = [];
+    dataHandler.clearSessionData();
     logger.info('Conversation history reset');
+  }
+
+  endSession(): void {
+    // Hard cleanup on session end
+    this.conversationHistory = [];
+    dataHandler.hardDeleteAllData();
+    logger.info(`Session ${this.sessionId} ended - all data cleared`);
+  }
+
+  private validateCommandPrivacy(command: string): boolean {
+    const blockedTerms = [
+      'export',
+      'backup',
+      'archive all',
+      'save all emails',
+      'download emails',
+      'scrape contacts',
+      'extract addresses',
+      'collect senders',
+      'gather recipients',
+      'share with',
+      'send to third party',
+      'forward to external',
+    ];
+
+    const lowerCommand = command.toLowerCase();
+    for (const term of blockedTerms) {
+      if (lowerCommand.includes(term)) {
+        logger.warn(`Blocked command containing privacy violation term: ${term}`);
+        return false;
+      }
+    }
+
+    return true;
   }
 
   getConversationHistory(): Array<{ role: 'user' | 'assistant'; content: string }> {

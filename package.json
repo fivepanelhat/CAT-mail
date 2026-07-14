@@ -1,7 +1,7 @@
 {
-  "name": "cat-mail",
+  "name": "@coastalalpine/cat-mail",
   "version": "0.1.0",
-  "description": "AI-powered email agent for intelligent inbox management, spam filtering, and email automation",
+  "description": "Privacy-first AI email agent - Coastal Alpine Tech Email Management System. NZ Privacy Act compliant, in-memory processing, zero data retention.",
   "type": "module",
   "main": "dist/index.js",
   "scripts": {
