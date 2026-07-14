@@ -1,6 +1,7 @@
 {
   "version": 2,
   "name": "cat-mail",
+  "buildCommand": "echo 'CAT Mail Landing Page - v1.0.1'",
   "builds": [
     {
       "src": "web/index.html",
