@@ -1,10 +1,30 @@
 # 🔒 Coastal Alpine Tech Email Agent
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)](https://github.com/fivepanelhat/CAT-mail/releases/tag/v1.1.0)
+[![Node.js](https://img.shields.io/badge/Node.js-18%2B-339933?logo=node.js&logoColor=white)](https://nodejs.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0%2B-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+
+[![Windows](https://img.shields.io/badge/Windows-10%2B-0078D4?logo=windows&logoColor=white)](https://github.com/fivepanelhat/CAT-mail)
+[![Linux](https://img.shields.io/badge/Linux-Ubuntu%2C%20Debian%2C%20Fedora-FCC624?logo=linux&logoColor=black)](https://github.com/fivepanelhat/CAT-mail)
+[![macOS](https://img.shields.io/badge/macOS-10.15%2B-000000?logo=apple&logoColor=white)](https://github.com/fivepanelhat/CAT-mail)
+[![Docker](https://img.shields.io/badge/Docker-Supported-2496ED?logo=docker&logoColor=white)](https://github.com/fivepanelhat/CAT-mail)
+
+[![Claude](https://img.shields.io/badge/Claude-Anthropic-9C27B0)](https://github.com/fivepanelhat/CAT-mail)
+[![Gemini](https://img.shields.io/badge/Gemini-Google-4285F4?logo=google&logoColor=white)](https://github.com/fivepanelhat/CAT-mail)
+[![OpenAI](https://img.shields.io/badge/OpenAI-GPT--4-00A67E)](https://github.com/fivepanelhat/CAT-mail)
+[![Grok](https://img.shields.io/badge/Grok-xAI-000000)](https://github.com/fivepanelhat/CAT-mail)
+
+[![Privacy First](https://img.shields.io/badge/Privacy-First-red.svg)]()
+[![Zero Data Retention](https://img.shields.io/badge/Zero%20Data%20Retention-Guaranteed-brightgreen.svg)]()
+[![NZ Privacy Act 2020](https://img.shields.io/badge/NZ%20Privacy%20Act%202020-Compliant-green.svg)]()
+[![Status](https://img.shields.io/badge/Status-Production%20Ready-brightgreen.svg)]()
+
 **🔐 Privacy-First | 🧠 AI-Powered | ⚡ Security-Hardened | 📧 Email Management**
 
 > 🎯 NZ Privacy Act 2020 Compliant | ✅ Zero Data Retention | 🚀 Production Ready
 
-**📖 [Documentation](#-documentation) | 🚀 [Quick Start](#-quick-start) | 🔗 [GitHub Repository](https://github.com/fivepanelhat/CAT-mail)**
+**📖 [Documentation](#-documentation) | 🚀 [Quick Start](#-quick-start) | 🔗 [GitHub Repository](https://github.com/fivepanelhat/CAT-mail) | 🎖️ [Badges](BADGES.md)**
 
 ---
 
