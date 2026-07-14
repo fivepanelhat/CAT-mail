@@ -4,6 +4,76 @@
 
 > 🎯 NZ Privacy Act 2020 Compliant | ✅ Zero Data Retention | 🚀 Production Ready
 
+**🌐 [View Landing Page on Vercel](https://cat-mail.vercel.app) | 📖 [Documentation](#-documentation) | 🚀 [Quick Start](#-quick-start)**
+
+---
+
+## 🚨 The Problem We're Solving
+
+### ❌ Traditional Email Management is Broken
+
+**Privacy Nightmare:**
+- 📊 Your email client stores **everything** - forever
+- 👀 Companies track your email patterns for profit
+- 🔗 Third-party services get access to your inbox
+- 📱 No control over what's collected or retained
+- 🤝 Your data gets sold or "anonymized" for research
+
+**Security Risk:**
+- 🔓 Centralized storage = centralized target for hackers
+- 🔑 Weak password management puts you at risk
+- 📧 Spam and phishing emails flood your inbox
+- 🗑️ No way to permanently delete sensitive emails
+- 🚫 Can't control who sees your communications
+
+**Inefficiency:**
+- 🔍 Manual spam filtering is exhausting
+- 📤 Repetitive email tasks waste hours
+- 🎯 No natural language commands
+- 📋 Complex folder structures and rules
+- ⏰ No automation without coding
+
+### ✅ Our Solution
+
+**CAT Email Agent solves these problems:**
+
+| Problem | Solution |
+|---------|----------|
+| **Privacy nightmare** | 🔒 Zero data retention - in-memory only |
+| **Data tracking** | 🚫 No profiling, no behavioral analysis |
+| **Third-party sharing** | 🛡️ Blocked by design - never shared |
+| **No control** | 👤 You control everything via OAuth |
+| **Security risk** | ✅ Fully encrypted, validated inputs |
+| **Manual spam** | 🤖 AI-powered automatic classification |
+| **Repetitive tasks** | ⚡ Natural language automation |
+| **Complex setup** | 🚀 5-minute installation |
+| **No transparency** | 📖 Open source, fully auditable |
+| **No compliance** | 🎯 NZ Privacy Act 2020 compliant |
+
+---
+
+## 🎯 How It Works
+
+```
+Your Email Command (Natural Language)
+    ↓
+🔒 Privacy Validation (Block dangerous operations)
+    ↓
+🧠 Claude AI or Google Gemini (Understand intent)
+    ↓
+📧 Gmail API (Your credentials only)
+    ↓
+✅ Execute Operation (Search, delete, send, etc.)
+    ↓
+🧹 Auto-Cleanup (All data immediately deleted)
+    ↓
+🎯 Result (Your email stays yours)
+```
+
+**Key Guarantee**: Data enters → is processed → exits → memory cleared. ✅ No copies. No storage. No sharing.
+
+---
+
 An intelligent, privacy-focused AI email agent for managing your inbox. The Coastal Alpine Tech (CAT) Email Agent understands natural language commands, automatically filters spam, and keeps your email organized—**without ever storing, retaining, or sharing your data**.
 
 ## 🎯 Core Philosophy

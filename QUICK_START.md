@@ -1,6 +1,26 @@
-# Quick Start Guide - CAT Email Agent
+# 🚀 Quick Start Guide - CAT Email Agent
 
 **Get up and running in 5 minutes**
+
+> 🌐 **[View our landing page on Vercel](https://cat-mail.vercel.app)** | 🔒 Privacy-first, zero data retention, NZ Privacy Act compliant
+
+---
+
+## 🚨 The Problem We Solve
+
+**Email clients are privacy nightmares:**
+- 📊 Store everything forever
+- 👀 Track and profile your behavior
+- 🔗 Share data with third parties
+- 🤷 No control over your information
+
+**Our solution:**
+- ✅ Zero data retention (in-memory only)
+- ✅ No profiling or tracking
+- ✅ No third-party sharing
+- ✅ You control everything via OAuth
+
+---
 
 ---
 

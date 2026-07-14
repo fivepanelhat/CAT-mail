@@ -2,6 +2,28 @@
 
 > 🔒 Privacy-First Email Management | 🧠 AI-Powered | ⚡ Security-Hardened
 
+🌐 **[View Live Demo on Vercel](https://cat-mail.vercel.app)** • 🔐 **Zero Data Retention** • 🎯 **NZ Privacy Act Compliant**
+
+---
+
+## 🚨 The Problem
+
+**Traditional email is broken:**
+- ❌ Clients store everything forever
+- ❌ Your behavior is tracked and sold
+- ❌ Third parties access your inbox
+- ❌ No privacy, no control
+- ❌ Spam and repetitive tasks
+
+**CAT Mail solves it:**
+- ✅ Zero data retention (in-memory only)
+- ✅ No profiling or tracking
+- ✅ No third-party sharing
+- ✅ Complete privacy and control
+- ✅ AI-powered automation
+
+---
+
 ---
 
 ## 🎉 v1.0.0 - Production Ready (July 14, 2026)
