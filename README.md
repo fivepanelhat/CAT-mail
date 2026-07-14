@@ -1,6 +1,8 @@
 # 🔒 Coastal Alpine Tech Email Agent
 
-**Privacy-First AI Email Management | NZ Privacy Act Compliant**
+**🔐 Privacy-First | 🧠 AI-Powered | ⚡ Security-Hardened | 📧 Email Management**
+
+> 🎯 NZ Privacy Act 2020 Compliant | ✅ Zero Data Retention | 🚀 Production Ready
 
 An intelligent, privacy-focused AI email agent for managing your inbox. The Coastal Alpine Tech (CAT) Email Agent understands natural language commands, automatically filters spam, and keeps your email organized—**without ever storing, retaining, or sharing your data**.
 
