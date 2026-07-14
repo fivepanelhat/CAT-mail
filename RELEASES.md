@@ -2,7 +2,7 @@
 
 > 🔒 Privacy-First Email Management | 🧠 AI-Powered | ⚡ Security-Hardened
 
-🌐 **[View Live Demo on Vercel](https://cat-mail.vercel.app)** • 🔐 **Zero Data Retention** • 🎯 **NZ Privacy Act Compliant**
+🌐 **[View Live Demo on Vercel](https://catmailagent.vercel.app)** • 🔐 **Zero Data Retention** • 🎯 **NZ Privacy Act Compliant**
 
 ---
 
@@ -214,7 +214,7 @@ Built with ❤️ by **Coastal Alpine Tech**
 
 | Resource | Link |
 |----------|------|
-| 🌐 **Website** | [cat-mail.vercel.app](https://cat-mail.vercel.app) |
+| 🌐 **Website** | [cat-mail.vercel.app](https://catmailagent.vercel.app) |
 | 📖 **Docs** | [README.md](README.md) |
 | 🔐 **Privacy** | [PRIVACY_NOTICE.md](PRIVACY_NOTICE.md) |
 | 🚀 **Deploy** | [DEPLOYMENT_MASTER.md](DEPLOYMENT_MASTER.md) |

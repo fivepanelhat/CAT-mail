@@ -2,7 +2,7 @@
 
 **Get up and running in 5 minutes**
 
-> 🌐 **[View our landing page on Vercel](https://cat-mail.vercel.app)** | 🔒 Privacy-first, zero data retention, NZ Privacy Act compliant
+> 🌐 **[View our landing page on Vercel](https://catmailagent.vercel.app)** | 🔒 Privacy-first, zero data retention, NZ Privacy Act compliant
 
 ---
 
@@ -341,7 +341,7 @@ See [DEPLOYMENT_WINDOWS.md](DEPLOYMENT_WINDOWS.md) - Task Scheduler setup
 The project includes a beautiful liquid morphism UI design:
 
 - View locally: Open `VISUAL_DESIGN.html` in browser
-- Online: Visit [cat-mail.vercel.app](https://cat-mail.vercel.app)
+- Online: Visit [cat-mail.vercel.app](https://catmailagent.vercel.app)
 - Static site: Deployed on Vercel
 
 ---

@@ -179,7 +179,7 @@ Email → [In RAM only] → [Processed] → [Immediately deleted] → [Gone fore
 
 ## 🌐 See It In Action
 
-**[View our landing page on Vercel →](https://cat-mail.vercel.app)**
+**[View our landing page on Vercel →](https://catmailagent.vercel.app)**
 
 Beautiful, transparent, shows exactly what we do and don't do.
 
@@ -235,7 +235,7 @@ Beautiful, transparent, shows exactly what we do and don't do.
 
 ## 🚀 Get Started
 
-**See it in action:** [Visit Vercel Landing Page](https://cat-mail.vercel.app)
+**See it in action:** [Visit Vercel Landing Page](https://catmailagent.vercel.app)
 
 **Install in 5 minutes:**
 ```bash
@@ -265,4 +265,4 @@ npm run dev "delete all spam emails"
 
 🔒 **Your email stays yours. Always.**
 
-🚀 **[Get started →](https://cat-mail.vercel.app)**
+🚀 **[Get started →](https://catmailagent.vercel.app)**
