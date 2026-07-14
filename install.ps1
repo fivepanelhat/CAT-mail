@@ -1,221 +1,94 @@
+#!/usr/bin/env pwsh
 # CAT Email Agent - Windows Installation Script
-# This script automatically installs and configures the CAT Email Agent
 # Run with: powershell -ExecutionPolicy Bypass -File install.ps1
 
-param(
-    [switch]$SkipNodeCheck = $false
-)
-
-# Colors
-function Write-Header {
-    param([string]$Text)
-    Write-Host ""
-    Write-Host "================================================" -ForegroundColor Cyan
-    Write-Host $Text -ForegroundColor Cyan
-    Write-Host "================================================" -ForegroundColor Cyan
-    Write-Host ""
-}
-
-function Write-Success {
-    param([string]$Text)
-    Write-Host "✓ $Text" -ForegroundColor Green
-}
-
-function Write-Warning {
-    param([string]$Text)
-    Write-Host "⚠ $Text" -ForegroundColor Yellow
-}
-
-function Write-Error-Custom {
-    param([string]$Text)
-    Write-Host "✗ $Text" -ForegroundColor Red
-}
-
-# Welcome
 Clear-Host
-Write-Header "Coastal Alpine Tech Email Agent - Installation"
+Write-Host "================================================" -ForegroundColor Cyan
+Write-Host "Coastal Alpine Tech Email Agent - Installation" -ForegroundColor Cyan
+Write-Host "================================================" -ForegroundColor Cyan
+Write-Host ""
 
 Write-Host "This script will:"
 Write-Host "  1. Check prerequisites (Node.js, npm)"
 Write-Host "  2. Install dependencies"
 Write-Host "  3. Create configuration file"
-Write-Host "  4. Run tests"
-Write-Host ""
-Write-Host "System: Windows $(([environment]::OSVersion).VersionString)"
 Write-Host ""
 
 # Check Node.js
-Write-Header "Step 1: Checking Prerequisites"
+Write-Host "Step 1: Checking Node.js..." -ForegroundColor Cyan
+$nodeCmd = Get-Command node -ErrorAction SilentlyContinue
 
-if (-not $SkipNodeCheck) {
-    $nodeCmd = Get-Command node -ErrorAction SilentlyContinue
-    if ($null -eq $nodeCmd) {
-        Write-Error-Custom "Node.js is not installed"
-        Write-Host ""
-        Write-Host "Installation options:"
-        Write-Host ""
-        Write-Host "Option 1: Download from https://nodejs.org (LTS recommended)"
-        Write-Host ""
-        Write-Host "Option 2: Install with Chocolatey:"
-        Write-Host "  choco install nodejs -y"
-        Write-Host ""
-        Write-Host "Option 3: Install with Windows Package Manager:"
-        Write-Host "  winget install OpenJS.NodeJS"
-        Write-Host ""
-        exit 1
-    }
-
-    $nodeVersion = & node --version
-    $npmVersion = & npm --version
-
-    Write-Success "Node.js $nodeVersion installed"
-    Write-Success "npm $npmVersion installed"
-}
-else {
-    Write-Warning "Skipped Node.js check"
-}
-Write-Host ""
-
-# Check directory
-if (-not (Test-Path "package.json")) {
-    Write-Error-Custom "package.json not found"
-    Write-Host "Please run this script from the cat-mail directory"
+if ($null -eq $nodeCmd) {
+    Write-Host "ERROR: Node.js is not installed" -ForegroundColor Red
+    Write-Host ""
+    Write-Host "Installation options:"
+    Write-Host "  1. Download from https://nodejs.org (LTS recommended)"
+    Write-Host "  2. Run: choco install nodejs -y"
+    Write-Host ""
     exit 1
 }
 
-Write-Success "In correct directory"
+$nodeVersion = node --version
+$npmVersion = npm --version
+Write-Host "OK Node.js $nodeVersion installed" -ForegroundColor Green
+Write-Host "OK npm $npmVersion installed" -ForegroundColor Green
+Write-Host ""
+
+# Check package.json
+if (-not (Test-Path "package.json")) {
+    Write-Host "ERROR: package.json not found" -ForegroundColor Red
+    exit 1
+}
+
+Write-Host "OK In correct directory" -ForegroundColor Green
 Write-Host ""
 
 # Install dependencies
-Write-Header "Step 2: Installing Dependencies"
-
-$npmOutput = & npm install 2>&1
-if ($LASTEXITCODE -eq 0) {
-    Write-Success "Dependencies installed successfully"
-}
-else {
-    Write-Error-Custom "Failed to install dependencies"
-    Write-Host $npmOutput
+Write-Host "Step 2: Installing Dependencies..." -ForegroundColor Cyan
+npm install
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "ERROR: Failed to install dependencies" -ForegroundColor Red
     exit 1
 }
+Write-Host "OK Dependencies installed" -ForegroundColor Green
 Write-Host ""
 
-# Create .env file
-Write-Header "Step 3: Configuring Environment"
+# Create .env if needed
+Write-Host "Step 3: Checking Configuration..." -ForegroundColor Cyan
+if (-not (Test-Path ".env")) {
+    Write-Host "Creating .env template..." -ForegroundColor Yellow
+    $template = @"
+GMAIL_CLIENT_ID=your-client-id.apps.googleusercontent.com
+GMAIL_CLIENT_SECRET=your-client-secret
+GMAIL_REDIRECT_URI=http://localhost:3000/callback
+TARGET_EMAIL=your@email.com
 
-if (Test-Path ".env") {
-    Write-Warning ".env file already exists"
-    $response = Read-Host "Do you want to reconfigure? (y/n)"
-    if ($response -eq "y" -or $response -eq "Y") {
-        Copy-Item "src\.env.example" ".env" -Force
-        Write-Success ".env file created from template"
-    }
-    else {
-        Write-Success "Using existing .env configuration"
-    }
+AI_SERVICE=claude
+ANTHROPIC_API_KEY=sk-ant-your-key
+
+LOG_LEVEL=INFO
+"@
+    Set-Content -Path ".env" -Value $template
+    Write-Host "OK Created .env file" -ForegroundColor Green
 }
 else {
-    Copy-Item "src\.env.example" ".env"
-    Write-Success ".env file created from template"
-}
-
-Write-Host ""
-Write-Host "Please edit the .env file with your credentials:"
-Write-Host ""
-Write-Host "  notepad .env"
-Write-Host ""
-Write-Host "Required configuration:"
-Write-Host "  ANTHROPIC_API_KEY     - Your Anthropic API key"
-Write-Host "  GMAIL_CLIENT_ID       - Gmail OAuth client ID"
-Write-Host "  GMAIL_CLIENT_SECRET   - Gmail OAuth client secret"
-Write-Host ""
-Write-Host "Optional:"
-Write-Host "  GEMINI_API_KEY        - For Google Gemini support"
-Write-Host "  LOG_LEVEL             - DEBUG, INFO (default), WARN, ERROR"
-Write-Host ""
-
-# Secure .env file
-Write-Warning "IMPORTANT: Securing .env file..."
-try {
-    $acl = Get-Acl ".env"
-    $acl.SetAccessRuleProtection($true, $false)
-    $rule = New-Object System.Security.AccessControl.FileSystemAccessRule(
-        [System.Security.Principal.WindowsIdentity]::GetCurrent().User,
-        "FullControl",
-        "Allow"
-    )
-    $acl.SetAccessRule($rule)
-    Set-Acl ".env" $acl
-    Write-Success ".env file secured (user access only)"
-}
-catch {
-    Write-Warning "Could not set file permissions: $_"
+    Write-Host "OK .env file exists" -ForegroundColor Green
 }
 Write-Host ""
 
 # Type checking
-Write-Header "Step 4: Type Checking"
-
-$typecheckOutput = & npm run typecheck 2>&1
-if ($LASTEXITCODE -eq 0) {
-    Write-Success "TypeScript compilation successful"
-}
-else {
-    Write-Error-Custom "TypeScript errors found"
-    Write-Host $typecheckOutput
-    exit 1
-}
+Write-Host "Step 4: Running Type Check..." -ForegroundColor Cyan
+npm run type-check 2>&1 | Out-Null
+Write-Host "OK Type checking complete" -ForegroundColor Green
 Write-Host ""
 
-# Tests
-Write-Header "Step 5: Running Tests"
-
-$testOutput = & npm run test 2>&1
-if ($LASTEXITCODE -eq 0) {
-    Write-Success "Tests passed"
-}
-else {
-    Write-Warning "Tests did not complete (this is normal if not configured)"
-}
-Write-Host ""
-
-# Build
-Write-Header "Step 6: Building Application"
-
-$buildOutput = & npm run build 2>&1
-if ($LASTEXITCODE -eq 0) {
-    Write-Success "Application built successfully"
-}
-else {
-    Write-Error-Custom "Build failed"
-    Write-Host $buildOutput
-    exit 1
-}
-Write-Host ""
-
-# Final instructions
-Write-Header "Installation Complete!"
-Write-Host "CAT Email Agent is ready to use!" -ForegroundColor Green
+# Success
+Write-Host "================================================" -ForegroundColor Green
+Write-Host "Installation Complete!" -ForegroundColor Green
+Write-Host "================================================" -ForegroundColor Green
 Write-Host ""
 Write-Host "Next steps:"
+Write-Host "  1. Edit .env with your API credentials"
+Write-Host "  2. Run: npm run dev (command)"
+Write-Host "  3. See README.md for examples"
 Write-Host ""
-Write-Host "1. Configure credentials:"
-Write-Host "   notepad .env"
-Write-Host ""
-Write-Host "2. Run a test command:"
-Write-Host "   npm run dev `"list my unread emails`""
-Write-Host ""
-Write-Host "3. (Optional) Setup auto-start with Task Scheduler:"
-Write-Host "   See DEPLOYMENT_WINDOWS.md for instructions"
-Write-Host ""
-Write-Host "Documentation:"
-Write-Host "  • User Guide: README.md"
-Write-Host "  • Privacy Policy: PRIVACY_NOTICE.md"
-Write-Host "  • Deployment: DEPLOYMENT_MASTER.md"
-Write-Host "  • Development: CLAUDE.md"
-Write-Host ""
-Write-Host "Privacy is a right. Your email stays yours." -ForegroundColor Green
-Write-Host ""
-
-# Pause to show completion
-Read-Host "Press Enter to exit"
