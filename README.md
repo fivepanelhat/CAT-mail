@@ -4,7 +4,7 @@
 
 > 🎯 NZ Privacy Act 2020 Compliant | ✅ Zero Data Retention | 🚀 Production Ready
 
-**🌐 [View Landing Page on Vercel](https://catmailagent.vercel.app) | 📖 [Documentation](#-documentation) | 🚀 [Quick Start](#-quick-start)**
+**📖 [Documentation](#-documentation) | 🚀 [Quick Start](#-quick-start) | 🔗 [GitHub Repository](https://github.com/fivepanelhat/CAT-mail)**
 
 ---
 

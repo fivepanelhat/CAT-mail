@@ -177,11 +177,11 @@ Email → [In RAM only] → [Processed] → [Immediately deleted] → [Gone fore
 
 ---
 
-## 🌐 See It In Action
+## 🌐 See It On GitHub
 
-**[View our landing page on Vercel →](https://catmailagent.vercel.app)**
+**[View the repository →](https://github.com/fivepanelhat/CAT-mail)**
 
-Beautiful, transparent, shows exactly what we do and don't do.
+Fully open source, transparent, and ready to use.
 
 ---
 
@@ -235,8 +235,6 @@ Beautiful, transparent, shows exactly what we do and don't do.
 
 ## 🚀 Get Started
 
-**See it in action:** [Visit Vercel Landing Page](https://catmailagent.vercel.app)
-
 **Install in 5 minutes:**
 ```bash
 bash install.sh  # Linux/macOS
@@ -265,4 +263,4 @@ npm run dev "delete all spam emails"
 
 🔒 **Your email stays yours. Always.**
 
-🚀 **[Get started →](https://catmailagent.vercel.app)**
+🚀 **[Get started on GitHub →](https://github.com/fivepanelhat/CAT-mail)**

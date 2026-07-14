@@ -2,7 +2,7 @@
 
 > 🔒 Privacy-First Email Management | 🧠 AI-Powered | ⚡ Security-Hardened
 
-🌐 **[View Live Demo on Vercel](https://catmailagent.vercel.app)** • 🔐 **Zero Data Retention** • 🎯 **NZ Privacy Act Compliant**
+🔐 **Zero Data Retention** • 🎯 **NZ Privacy Act Compliant** • 📖 **[GitHub Repository](https://github.com/fivepanelhat/CAT-mail)**
 
 ---
 

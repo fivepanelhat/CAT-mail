@@ -2,7 +2,7 @@
 
 **Get up and running in 5 minutes**
 
-> 🌐 **[View our landing page on Vercel](https://catmailagent.vercel.app)** | 🔒 Privacy-first, zero data retention, NZ Privacy Act compliant
+> 🔒 Privacy-first, zero data retention, NZ Privacy Act compliant
 
 ---
 
