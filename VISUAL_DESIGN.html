@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAT Email Agent - Liquid Morphism Design</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .hero {
+            text-align: center;
+            color: white;
+            margin-bottom: 60px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #00d4ff 0%, #0099ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #a0a0b0;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 25px;
+            padding: 8px 16px;
+            color: #00d4ff;
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+        }
+
+        /* Liquid Morphism Card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 30px;
+            padding: 50px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            margin-bottom: 60px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Animated background blobs */
+        .blob-1 {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(0, 153, 255, 0.1));
+            border-radius: 45% 55% 52% 48% / 48% 45% 55% 52%;
+            top: -200px;
+            right: -100px;
+            animation: blob 7s ease-in-out infinite;
+            filter: blur(40px);
+        }
+
+        .blob-2 {
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            background: linear-gradient(225deg, rgba(100, 200, 255, 0.15), rgba(0, 100, 200, 0.08));
+            border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
+            bottom: -150px;
+            left: -100px;
+            animation: blob 8s ease-in-out infinite reverse;
+            filter: blur(40px);
+        }
+
+        .blob-3 {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(45deg, rgba(0, 212, 255, 0.1), rgba(0, 153, 255, 0.05));
+            border-radius: 71% 29% 66% 34% / 34% 52% 48% 66%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: blob 9s ease-in-out infinite;
+            filter: blur(50px);
+        }
+
+        @keyframes blob {
+            0%, 100% {
+                border-radius: 45% 55% 52% 48% / 48% 45% 55% 52%;
+            }
+            25% {
+                border-radius: 58% 42% 48% 52% / 45% 52% 48% 55%;
+            }
+            50% {
+                border-radius: 52% 48% 45% 55% / 55% 48% 52% 45%;
+            }
+            75% {
+                border-radius: 48% 52% 55% 45% / 52% 55% 45% 48%;
+            }
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(0, 212, 255, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.2);
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .feature-card:hover::before {
+            left: 100%;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .feature-title {
+            font-size: 1.2rem;
+            color: #00d4ff;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .feature-desc {
+            color: #a0a0b0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Metrics Section */
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .metric {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            color: #00d4ff;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .metric-label {
+            color: #a0a0b0;
+            font-size: 0.9rem;
+        }
+
+        /* Privacy Shield */
+        .privacy-shield {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(100, 200, 255, 0.05));
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 40px;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .privacy-shield::before {
+            content: '🔒';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 150px;
+            opacity: 0.05;
+        }
+
+        .privacy-title {
+            color: #00d4ff;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .privacy-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .privacy-item {
+            color: #a0a0b0;
+            padding: 10px 0;
+            border-left: 3px solid rgba(0, 212, 255, 0.3);
+            padding-left: 15px;
+            font-size: 0.95rem;
+        }
+
+        .privacy-item.yes {
+            border-left-color: #4ade80;
+        }
+
+        .privacy-item.yes::before {
+            content: '✅ ';
+            color: #4ade80;
+            font-weight: bold;
+        }
+
+        .privacy-item.no {
+            border-left-color: #f87171;
+            opacity: 0.7;
+        }
+
+        .privacy-item.no::before {
+            content: '❌ ';
+            color: #f87171;
+        }
+
+        /* Memory Usage Chart */
+        .memory-chart {
+            margin-top: 40px;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .chart-title {
+            color: #00d4ff;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .memory-bars {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
+
+        .bar-item {
+            text-align: center;
+        }
+
+        .bar-visual {
+            height: 150px;
+            background: linear-gradient(to top, rgba(0, 212, 255, 0.3), rgba(0, 212, 255, 0.1));
+            border-radius: 10px 10px 0 0;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .bar-fill {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(180deg, #00d4ff, #0099ff);
+            border-radius: 0;
+            animation: fillBar 2s ease-in-out infinite;
+        }
+
+        @keyframes fillBar {
+            0%, 100% { height: 0%; }
+            50% { height: var(--fill-height, 50%); }
+        }
+
+        .bar-label {
+            color: #a0a0b0;
+            font-size: 0.85rem;
+            margin-bottom: 5px;
+        }
+
+        .bar-value {
+            color: #00d4ff;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #a0a0b0;
+            font-size: 0.9rem;
+        }
+
+        .footer-text {
+            margin-bottom: 10px;
+        }
+
+        .footer-links {
+            margin-top: 20px;
+        }
+
+        .footer-links a {
+            color: #00d4ff;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            opacity: 0.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .glass-card {
+                padding: 30px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero">
+            <div class="badge">🔒 Privacy-First | NZ Privacy Act Compliant</div>
+            <h1>Coastal Alpine Tech Email Agent</h1>
+            <p>AI-Powered Email Management with Zero Data Retention</p>
+        </div>
+
+        <!-- Main Glass Morphism Card -->
+        <div class="glass-card">
+            <div class="blob-1"></div>
+            <div class="blob-2"></div>
+            <div class="blob-3"></div>
+
+            <div class="content">
+                <h2 style="color: #00d4ff; margin-bottom: 30px; font-size: 2rem;">How It Works</h2>
+
+                <!-- Features Grid -->
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <div class="feature-title">Natural Language</div>
+                        <div class="feature-desc">Understand commands like "delete spam from SEEK.COM" without syntax</div>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🔒</div>
+                        <div class="feature-title">Zero Storage</div>
+                        <div class="feature-desc">All data processed in-memory only, nothing retained after operation</div>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">⚙️</div>
+                        <div class="feature-title">Email Operations</div>
+                        <div class="feature-desc">Search, delete, send, archive, classify spam - all privacy-safe</div>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🧠</div>
+                        <div class="feature-title">Claude AI</div>
+                        <div class="feature-desc">Powered by Anthropic's Claude for intelligent intent understanding</div>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">📱</div>
+                        <div class="feature-title">Cross-Platform</div>
+                        <div class="feature-desc">Run on Linux, Windows, or Docker - same privacy guarantees</div>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">📋</div>
+                        <div class="feature-title">Audit Trail</div>
+                        <div class="feature-desc">Transparent operations logging - never email content, only operations</div>
+                    </div>
+                </div>
+
+                <!-- Metrics -->
+                <div class="metrics">
+                    <div class="metric">
+                        <div class="metric-value">80-120 MB</div>
+                        <div class="metric-label">Baseline Memory</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">0%</div>
+                        <div class="metric-label">Data Retention</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">13/13</div>
+                        <div class="metric-label">NZ Privacy Acts</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">30s</div>
+                        <div class="metric-label">Memory Auto-Cleanup</div>
+                    </div>
+                </div>
+
+                <!-- Privacy Shield -->
+                <div class="privacy-shield">
+                    <div class="privacy-title">Privacy Guarantees</div>
+                    <div class="privacy-items">
+                        <div class="privacy-item yes">No Email Storage</div>
+                        <div class="privacy-item yes">No Contact Scraping</div>
+                        <div class="privacy-item yes">No Data Retention</div>
+                        <div class="privacy-item yes">No Third-Party Sharing</div>
+                        <div class="privacy-item yes">Local Preferences Only</div>
+                        <div class="privacy-item yes">Transparent Logging</div>
+                        <div class="privacy-item no">No Behavioral Tracking</div>
+                        <div class="privacy-item no">No Data Monetization</div>
+                    </div>
+                </div>
+
+                <!-- Memory Usage Chart -->
+                <div class="memory-chart">
+                    <div class="chart-title">📊 Memory Usage Pattern</div>
+                    <div class="memory-bars">
+                        <div class="bar-item">
+                            <div class="bar-label">Startup</div>
+                            <div class="bar-visual">
+                                <div class="bar-fill" style="--fill-height: 25%;"></div>
+                            </div>
+                            <div class="bar-value">50-80 MB</div>
+                        </div>
+                        <div class="bar-item">
+                            <div class="bar-label">Idle</div>
+                            <div class="bar-visual">
+                                <div class="bar-fill" style="--fill-height: 35%;"></div>
+                            </div>
+                            <div class="bar-value">80-120 MB</div>
+                        </div>
+                        <div class="bar-item">
+                            <div class="bar-label">Processing</div>
+                            <div class="bar-visual">
+                                <div class="bar-fill" style="--fill-height: 70%;"></div>
+                            </div>
+                            <div class="bar-value">150-250 MB</div>
+                        </div>
+                        <div class="bar-item">
+                            <div class="bar-label">Peak</div>
+                            <div class="bar-visual">
+                                <div class="bar-fill" style="--fill-height: 100%;"></div>
+                            </div>
+                            <div class="bar-value">250-300 MB</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-text">🔐 Privacy is a right, not a feature</div>
+            <div class="footer-text">Coastal Alpine Tech Email Agent v1.0</div>
+            <div class="footer-links">
+                <a href="PRIVACY_NOTICE.md">Privacy Policy</a>
+                <a href="ARCHITECTURE.md">Architecture</a>
+                <a href="DEPLOYMENT.md">Deployment</a>
+                <a href="README.md">Documentation</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
