@@ -8,21 +8,25 @@ import { privacyGuardrails } from '../security/privacy-guardrails.js';
 import { dataHandler } from '../security/data-handler.js';
 import { preferencesManager } from '../security/preferences.js';
 
+export type AIService = 'claude' | 'gemini' | 'openai' | 'grok';
+
 export class EmailAgent {
-  private client: Anthropic;
+  private client: Anthropic | null;
   private gmail: GmailAdapter;
   private classifier: SpamClassifier;
   private tools: EmailTools;
   private conversationHistory: Array<{ role: 'user' | 'assistant'; content: string }> = [];
   private sessionId: string;
+  private aiService: AIService;
 
-  constructor(gmail: GmailAdapter, apiKey: string) {
+  constructor(gmail: GmailAdapter, apiKey: string, aiService: AIService = 'claude') {
     this.gmail = gmail;
     this.classifier = new SpamClassifier();
     this.tools = new EmailTools(gmail, this.classifier);
-    this.client = new Anthropic({ apiKey });
+    this.aiService = aiService;
+    this.client = aiService === 'claude' ? new Anthropic({ apiKey }) : null;
     this.sessionId = this.generateSessionId();
-    logger.info(`EmailAgent initialized with session ${this.sessionId}`);
+    logger.info(`EmailAgent initialized with ${aiService} service and session ${this.sessionId}`);
   }
 
   private generateSessionId(): string {

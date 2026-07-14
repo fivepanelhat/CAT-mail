@@ -97,7 +97,9 @@ GMAIL_REDIRECT_URI=http://localhost:3000/callback
 
 ### Step 3: Choose Your AI Service
 
-#### Option A: Claude (Anthropic)
+**CAT Mail supports 4 AI backends. Pick one:**
+
+#### Option A: Claude (Anthropic) ⭐ Recommended
 
 1. Get API key from [Anthropic Console](https://console.anthropic.com)
 2. Add to `.env`:
@@ -107,7 +109,7 @@ AI_SERVICE=claude
 ANTHROPIC_API_KEY=sk-ant-your-key-here
 ```
 
-#### Option B: Gemini (Google)
+#### Option B: Gemini (Google) 💰 Cheapest
 
 1. Get API key from [Google AI Studio](https://makersuite.google.com)
 2. Add to `.env`:
@@ -116,6 +118,29 @@ ANTHROPIC_API_KEY=sk-ant-your-key-here
 AI_SERVICE=gemini
 GEMINI_API_KEY=your-gemini-key-here
 ```
+
+#### Option C: OpenAI (GPT-4) 💡 Most Powerful
+
+1. Get API key from [OpenAI Platform](https://platform.openai.com/account/api-keys)
+2. Add payment method to account
+3. Add to `.env`:
+
+```env
+AI_SERVICE=openai
+OPENAI_API_KEY=sk-proj-your-key-here
+```
+
+#### Option D: Grok (xAI) ⚡ Fast & Witty
+
+1. Get API key from [xAI Console](https://console.x.ai)
+2. Add to `.env`:
+
+```env
+AI_SERVICE=grok
+GROK_API_KEY=your-grok-key-here
+```
+
+**See [AI_SERVICES.md](AI_SERVICES.md) for detailed comparison and pricing.**
 
 ### Step 4: Optional Configuration
 

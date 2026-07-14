@@ -59,7 +59,7 @@ Your Email Command (Natural Language)
     ↓
 🔒 Privacy Validation (Block dangerous operations)
     ↓
-🧠 Claude AI or Google Gemini (Understand intent)
+🧠 Claude, Gemini, OpenAI, or Grok (Pick your AI)
     ↓
 📧 Gmail API (Your credentials only)
     ↓
@@ -173,7 +173,7 @@ npm run dev "remember this reply: Thanks, I'll get back to you soon"
 
 ## 🏗️ Architecture
 
-- **Email Agent**: Claude-powered orchestrator with privacy guardrails
+- **Email Agent**: Multi-AI orchestrator (Claude, Gemini, OpenAI, or Grok) with privacy guardrails
 - **Privacy Guardrails**: Enforcement layer preventing data collection
 - **Data Handler**: In-memory processing with automatic cleanup
 - **Gmail Adapter**: OAuth 2.0 interface to your email
