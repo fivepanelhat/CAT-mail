@@ -4,7 +4,7 @@
 
 ---
 
-## 🐧 Prerequisites for Linux
+## Prerequisites for Linux
 
 ### Supported Distributions
 - Ubuntu 20.04+ (LTS recommended)
@@ -26,7 +26,7 @@
 
 ---
 
-## 📦 Installation (Linux)
+## Installation (Linux)
 
 ### Step 1: Install Node.js
 
@@ -41,8 +41,8 @@ curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
 sudo apt install -y nodejs
 
 # Verify installation
-node --version  # Should be v20.x.x
-npm --version   # Should be 9.x.x or higher
+node --version # Should be v20.x.x
+npm --version # Should be 9.x.x or higher
 ```
 
 **Fedora/CentOS:**
@@ -76,7 +76,7 @@ cd cat-mail
 npm install
 
 # Verify installation
-npm run typecheck  # Should compile without errors
+npm run typecheck # Should compile without errors
 ```
 
 ### Step 3: Configure Environment
@@ -117,7 +117,7 @@ chmod 600 .env
 
 ---
 
-## 🚀 Running on Linux
+## Running on Linux
 
 ### Quick Start
 ```bash
@@ -145,7 +145,7 @@ node dist/index.js "your command here"
 
 ---
 
-## 📊 Memory Usage (Linux)
+## Memory Usage (Linux)
 
 ### Typical Memory Footprint
 
@@ -187,31 +187,31 @@ node --expose-gc src/index.ts "test command"
 node --max-old-space-size=256 dist/index.js "command"
 
 # Options:
-# --max-old-space-size=256   → 256 MB max
-# --max-old-space-size=512   → 512 MB max
-# --max-old-space-size=1024  → 1 GB max
+# --max-old-space-size=256 -> 256 MB max
+# --max-old-space-size=512 -> 512 MB max
+# --max-old-space-size=1024 -> 1 GB max
 ```
 
 ### Memory Behavior
 
 ```
 Session Start
-    ↓ (~80 MB)
+ (~80 MB)
 Command Processing
-    ↓ (~150-250 MB - in-memory email data)
+ (~150-250 MB - in-memory email data)
 Email Operations
-    ↓ (~200 MB peak)
+ (~200 MB peak)
 Result Generated
-    ↓ (~150 MB)
+ (~150 MB)
 [Automatic Cleanup]
-    ↓ (~80 MB baseline)
+ (~80 MB baseline)
 ```
 
 **Key Point**: Memory returns to baseline immediately after operation. No persistent memory growth.
 
 ---
 
-## 🔄 Systemd Service (Auto-Start)
+## Systemd Service (Auto-Start)
 
 ### Create Service File
 
@@ -274,7 +274,7 @@ sudo journalctl -u cat-mail -f
 
 ---
 
-## 🐳 Docker Deployment (Linux)
+## Docker Deployment (Linux)
 
 ### Create Dockerfile
 
@@ -302,7 +302,7 @@ EXPOSE 3000
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD node -e "console.log('healthy')" || exit 1
+ CMD node -e "console.log('healthy')" || exit 1
 
 # Run compiled app
 CMD ["node", "dist/index.js"]
@@ -316,18 +316,18 @@ docker build -t cat-mail:latest .
 
 # Run container
 docker run -it \
-  --env-file .env \
-  --memory 512m \
-  --cpus 1 \
-  --name cat-mail-agent \
-  cat-mail:latest
+ --env-file .env \
+ --memory 512m \
+ --cpus 1 \
+ --name cat-mail-agent \
+ cat-mail:latest
 
 # Run with command
 docker run -it \
-  --env-file .env \
-  --memory 512m \
-  cat-mail:latest \
-  "delete spam emails"
+ --env-file .env \
+ --memory 512m \
+ cat-mail:latest \
+ "delete spam emails"
 
 # View logs
 docker logs cat-mail-agent
@@ -343,33 +343,33 @@ docker stop cat-mail-agent
 version: '3.8'
 
 services:
-  cat-mail:
-    build: .
-    container_name: cat-mail-agent
-    environment:
-      - NODE_ENV=production
-      - LOG_LEVEL=INFO
-    env_file:
-      - .env
-    volumes:
-      - ./config.json:/app/config.json:rw
-      - ./logs:/app/logs:rw
-    deploy:
-      resources:
-        limits:
-          cpus: '1'
-          memory: 512M
-        reservations:
-          cpus: '0.5'
-          memory: 256M
-    restart: unless-stopped
-    ports:
-      - "3000:3000"
-    healthcheck:
-      test: ["CMD", "node", "-e", "console.log('healthy')"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
+ cat-mail:
+ build: .
+ container_name: cat-mail-agent
+ environment:
+ - NODE_ENV=production
+ - LOG_LEVEL=INFO
+ env_file:
+ - .env
+ volumes:
+ - ./config.json:/app/config.json:rw
+ - ./logs:/app/logs:rw
+ deploy:
+ resources:
+ limits:
+ cpus: '1'
+ memory: 512M
+ reservations:
+ cpus: '0.5'
+ memory: 256M
+ restart: unless-stopped
+ ports:
+ - "3000:3000"
+ healthcheck:
+ test: ["CMD", "node", "-e", "console.log('healthy')"]
+ interval: 30s
+ timeout: 10s
+ retries: 3
 ```
 
 **Run with Docker Compose:**
@@ -386,7 +386,7 @@ docker-compose down
 
 ---
 
-## 🔒 Security Hardening (Linux)
+## Security Hardening (Linux)
 
 ### File Permissions
 
@@ -405,7 +405,7 @@ chmod 600 ~/cat-mail/config.json
 
 ```bash
 # UFW (Ubuntu/Debian)
-sudo ufw allow 3000/tcp  # OAuth callback port
+sudo ufw allow 3000/tcp # OAuth callback port
 
 # Firewalld (Fedora/CentOS)
 sudo firewall-cmd --permanent --add-port=3000/tcp
@@ -428,7 +428,7 @@ su - cat-mail-user
 
 ---
 
-## 📈 Performance Monitoring (Linux)
+## Performance Monitoring (Linux)
 
 ### System Monitoring
 
@@ -464,7 +464,7 @@ ps -eo pid,cmd,etimes --sort=etimes
 
 ---
 
-## 🆘 Troubleshooting (Linux)
+## Troubleshooting (Linux)
 
 ### Permission Denied
 
@@ -501,8 +501,8 @@ echo $GMAIL_CLIENT_ID
 echo $GMAIL_CLIENT_SECRET
 
 # Test API access
-npm run typecheck  # Verify TypeScript
-npm test           # Run tests
+npm run typecheck # Verify TypeScript
+npm test # Run tests
 ```
 
 ### Port Already in Use
@@ -520,7 +520,7 @@ GMAIL_REDIRECT_URI=http://localhost:3001/callback npm run dev
 
 ---
 
-## 📝 Logging (Linux)
+## Logging (Linux)
 
 ### View Logs
 
@@ -540,20 +540,20 @@ grep "ERROR" logs/audit.log
 **`/etc/logrotate.d/cat-mail`:**
 ```
 /home/username/cat-mail/logs/*.log {
-    daily
-    missingok
-    rotate 7
-    compress
-    delaycompress
-    notifempty
-    create 0640 username username
-    sharedscripts
+ daily
+ missingok
+ rotate 7
+ compress
+ delaycompress
+ notifempty
+ create 0640 username username
+ sharedscripts
 }
 ```
 
 ---
 
-## ✅ Linux Deployment Checklist
+## [OK] Linux Deployment Checklist
 
 - [ ] Node.js 18+ installed
 - [ ] npm 8+ installed
@@ -571,26 +571,26 @@ grep "ERROR" logs/audit.log
 
 ---
 
-## 🚀 Production Deployment (Linux)
+## Production Deployment (Linux)
 
 ### Recommended Setup
 
 ```
-┌─────────────────────────────────────┐
-│     Systemd Service (Auto-Start)    │
-├─────────────────────────────────────┤
-│  CAT Email Agent                    │
-│  - Memory limit: 512 MB             │
-│  - CPU quota: 50%                   │
-│  - Auto-restart on failure          │
-├─────────────────────────────────────┤
-│  Config/Preferences (Local Storage) │
-│  - /home/user/cat-mail/config.json  │
-│  - /home/user/cat-mail/logs/        │
-├─────────────────────────────────────┤
-│  Gmail API (OAuth 2.0)              │
-│  Anthropic API (Language)           │
-└─────────────────────────────────────┘
+-------------------------------------
+| Systemd Service (Auto-Start) |
+|-------------------------------------
+| CAT Email Agent |
+| - Memory limit: 512 MB |
+| - CPU quota: 50% |
+| - Auto-restart on failure |
+|-------------------------------------
+| Config/Preferences (Local Storage) |
+| - /home/user/cat-mail/config.json |
+| - /home/user/cat-mail/logs/ |
+|-------------------------------------
+| Gmail API (OAuth 2.0) |
+| Anthropic API (Language) |
+`-------------------------------------
 ```
 
 ### Setup Steps
@@ -615,16 +615,16 @@ sudo journalctl -u cat-mail -f
 
 ---
 
-## 📞 Linux Support
+## Linux Support
 
-**Distribution Issues**: Check distro-specific Node.js installation  
-**Memory Issues**: Monitor with `top`, adjust limits in systemd/docker  
-**Permission Issues**: Verify user ownership with `ls -l`  
-**Network Issues**: Check firewall with `ufw status` or `firewall-cmd --list-all`  
+**Distribution Issues**: Check distro-specific Node.js installation 
+**Memory Issues**: Monitor with `top`, adjust limits in systemd/docker 
+**Permission Issues**: Verify user ownership with `ls -l` 
+**Network Issues**: Check firewall with `ufw status` or `firewall-cmd --list-all` 
 
 ---
 
-**Last Updated**: July 14, 2026  
-**Status**: ✅ Production Ready for Linux  
+**Last Updated**: July 14, 2026 
+**Status**: [OK] Production Ready for Linux 
 
 *Privacy is a right. Linux is freedom.*

@@ -4,24 +4,24 @@
 
 ---
 
-## 🔒 Security Overview
+## Security Overview
 
 This document outlines all security measures implemented in CAT Email Agent to prevent:
 
-- ✅ XSS (Cross-Site Scripting) attacks
-- ✅ SQL Injection
-- ✅ Command Injection
-- ✅ Path Traversal
-- ✅ XXE (XML External Entity) attacks
-- ✅ LDAP Injection
-- ✅ Malicious input/code execution
-- ✅ Data exposure
-- ✅ CSRF attacks
-- ✅ Rate limiting exploitation
+- [OK] XSS (Cross-Site Scripting) attacks
+- [OK] SQL Injection
+- [OK] Command Injection
+- [OK] Path Traversal
+- [OK] XXE (XML External Entity) attacks
+- [OK] LDAP Injection
+- [OK] Malicious input/code execution
+- [OK] Data exposure
+- [OK] CSRF attacks
+- [OK] Rate limiting exploitation
 
 ---
 
-## 🛡️ Input Validation & Sanitization
+## Input Validation & Sanitization
 
 ### InputValidator Class
 
@@ -31,7 +31,7 @@ Located in `src/security/input-validator.ts`, this class provides comprehensive 
 // Validates user commands
 const validation = inputValidator.validateCommand(command);
 if (!validation.valid) {
-  return { error: validation.reason };
+ return { error: validation.reason };
 }
 
 // Sanitizes emails
@@ -48,32 +48,32 @@ const { valid } = inputValidator.validateEmailIds(emailIds);
 
 ```typescript
 // SQL Injection patterns
-❌ SELECT, INSERT, UPDATE, DELETE, DROP, EXEC, UNION
-❌ Comments (-- /* */)
-❌ Quote characters (single/double)
-❌ Semicolons
+ SELECT, INSERT, UPDATE, DELETE, DROP, EXEC, UNION
+ Comments (-- /* */)
+ Quote characters (single/double)
+ Semicolons
 
 // Command injection patterns
-❌ Shell metacharacters (&|;<>$`(){})
-❌ Command names (sh, bash, cmd, powershell, rm, nc)
+ Shell metacharacters (&|;<>$`(){})
+ Command names (sh, bash, cmd, powershell, rm, nc)
 
 // XSS patterns
-❌ <script>, javascript:, onerror=, onclick=, eval()
-❌ <iframe>, <embed>, <object>, <img>, <svg>
+ <script>, javascript:, onerror=, onclick=, eval()
+ <iframe>, <embed>, <object>, <img>, <svg>
 
 // Path traversal
-❌ ../ or ..\
+ ../ or ..\
 
 // XXE/XML
-❌ <!DOCTYPE, <!ENTITY
+ <!DOCTYPE, <!ENTITY
 
 // LDAP Injection
-❌ Special characters (*()\\)
+ Special characters (*()\\)
 ```
 
 ---
 
-## 🔐 Authentication & Authorization
+## Authentication & Authorization
 
 ### Gmail OAuth 2.0
 
@@ -89,17 +89,17 @@ const { valid } = inputValidator.validateEmailIds(emailIds);
 ### API Keys
 
 ```
-✅ Stored in .env file only (never in code)
-✅ Never logged
-✅ Never sent to third parties
-✅ Environment-variable based access
-❌ Never exposed in error messages
-❌ Never stored in git
+[OK] Stored in .env file only (never in code)
+[OK] Never logged
+[OK] Never sent to third parties
+[OK] Environment-variable based access
+ Never exposed in error messages
+ Never stored in git
 ```
 
 ---
 
-## 🔒 XSS Prevention
+## XSS Prevention
 
 ### Output Encoding
 
@@ -107,13 +107,13 @@ All text displayed to users is sanitized:
 
 ```typescript
 sanitizeForDisplay(text) {
-  return text
-    .replace(/&/g, '&amp;')      // &
-    .replace(/</g, '&lt;')       // <
-    .replace(/>/g, '&gt;')       // >
-    .replace(/"/g, '&quot;')     // "
-    .replace(/'/g, '&#x27;')     // '
-    .replace(/\//g, '&#x2F;');   // /
+ return text
+ .replace(/&/g, '&amp;') // &
+ .replace(/</g, '&lt;') // <
+ .replace(/>/g, '&gt;') // >
+ .replace(/"/g, '&quot;') // "
+ .replace(/'/g, '&#x27;') // '
+ .replace(/\//g, '&#x2F;'); // /
 }
 ```
 
@@ -133,7 +133,7 @@ X-XSS-Protection: 1; mode=block
 
 ---
 
-## 💉 SQL Injection Prevention
+## SQL Injection Prevention
 
 ### No Direct SQL Queries
 
@@ -148,27 +148,27 @@ CAT Email Agent does NOT use SQL. All email operations go through:
 If SQL were used (future), all queries would be parameterized:
 
 ```typescript
-// ✅ GOOD: Parameterized
+// [OK] GOOD: Parameterized
 db.query('SELECT * FROM users WHERE email = ?', [email]);
 
-// ❌ BAD: String concatenation (never used)
+// BAD: String concatenation (never used)
 db.query('SELECT * FROM users WHERE email = ' + email);
 ```
 
 ---
 
-## 🎯 Command Injection Prevention
+## Command Injection Prevention
 
 ### No Shell Execution
 
 The application never executes shell commands:
 
 ```typescript
-// ❌ NEVER: Shell execution
+// NEVER: Shell execution
 exec(`gmail search ${command}`);
 spawn('bash', ['-c', command]);
 
-// ✅ ALWAYS: API calls only
+// [OK] ALWAYS: API calls only
 await gmail.searchEmails(query);
 ```
 
@@ -177,27 +177,27 @@ await gmail.searchEmails(query);
 ```typescript
 // Safe: Parameterized API calls
 gmail.users.messages.list({
-  userId: 'me',
-  q: sanitizedQuery  // Validated first
+ userId: 'me',
+ q: sanitizedQuery // Validated first
 });
 ```
 
 ---
 
-## 🔍 Path Traversal Prevention
+## Path Traversal Prevention
 
 ### File Path Validation
 
 ```typescript
 // Block parent directory traversal
 if (path.includes('..') || path.includes('..\\')) {
-  reject('Invalid path');
+ reject('Invalid path');
 }
 
 // Only allow files in expected directories
 const allowedDirs = ['./config', './logs'];
 if (!allowedDirs.some(dir => path.startsWith(dir))) {
-  reject('Path outside allowed directories');
+ reject('Path outside allowed directories');
 }
 ```
 
@@ -205,27 +205,27 @@ if (!allowedDirs.some(dir => path.startsWith(dir))) {
 
 ```
 Allowed paths:
-✅ ~/.cat-mail/config.json
-✅ ~/.cat-mail/logs/
-✅ ./config/
+[OK] ~/.cat-mail/config.json
+[OK] ~/.cat-mail/logs/
+[OK] ./config/
 
 Blocked paths:
-❌ /etc/passwd
-❌ ../../../etc/passwd
-❌ C:\Windows\System32
-❌ Any absolute paths outside app
+ /etc/passwd
+ ../../../etc/passwd
+ C:\Windows\System32
+ Any absolute paths outside app
 ```
 
 ---
 
-## 🆔 CSRF Prevention
+## CSRF Prevention
 
 ### No State-Changing GET Requests
 
 All state-changing operations use:
-- ✅ POST requests
-- ✅ Validated CSRF tokens
-- ✅ Same-origin checks
+- [OK] POST requests
+- [OK] Validated CSRF tokens
+- [OK] Same-origin checks
 
 ### Same-Origin Policy
 
@@ -237,36 +237,36 @@ Blocked: Any third-party domain
 
 ---
 
-## 🔐 Rate Limiting
+## Rate Limiting
 
 ### Implementation
 
 ```typescript
 // Check rate limits before processing
 const { allowed, remaining } = inputValidator.checkRateLimit(
-  userId,
-  maxRequests = 100,
-  windowSeconds = 60
+ userId,
+ maxRequests = 100,
+ windowSeconds = 60
 );
 
 if (!allowed) {
-  return { error: 'Rate limit exceeded' };
+ return { error: 'Rate limit exceeded' };
 }
 ```
 
 ### Limits (Per User, Per Minute)
 
 ```
-Email search:     100 ops/min
-Email delete:     100 ops/min
-Send email:       50 ops/min
-Classify spam:    100 ops/min
-Total:            500 ops/min
+Email search: 100 ops/min
+Email delete: 100 ops/min
+Send email: 50 ops/min
+Classify spam: 100 ops/min
+Total: 500 ops/min
 ```
 
 ---
 
-## 📊 Data Protection
+## Data Protection
 
 ### In-Memory Processing
 
@@ -284,13 +284,13 @@ Email data lifecycle:
 ### No Data Retention
 
 ```
-✅ Emails: Never stored
-✅ Contacts: Never collected
-✅ Metadata: Never retained
-✅ Headers: Processed, not saved
-✅ Content: Never logged
-❌ User behavior: Not tracked
-❌ Email patterns: Not analyzed
+[OK] Emails: Never stored
+[OK] Contacts: Never collected
+[OK] Metadata: Never retained
+[OK] Headers: Processed, not saved
+[OK] Content: Never logged
+ User behavior: Not tracked
+ Email patterns: Not analyzed
 ```
 
 ### Secure Deletion
@@ -308,44 +308,44 @@ global.gc?.(); // Force V8 garbage collection
 
 ---
 
-## 🔒 API Security
+## API Security
 
 ### Anthropic Claude API
 
 ```
-✅ HTTPS only (TLS 1.3)
-✅ API key authentication
-✅ Text queries only (no email content)
-✅ No data retention (Anthropic's policy)
-✅ Standard error handling
-❌ Never sends email bodies
-❌ Never sends attachments
+[OK] HTTPS only (TLS 1.3)
+[OK] API key authentication
+[OK] Text queries only (no email content)
+[OK] No data retention (Anthropic's policy)
+[OK] Standard error handling
+ Never sends email bodies
+ Never sends attachments
 ```
 
 ### Google Gemini API
 
 ```
-✅ HTTPS only (TLS 1.3)
-✅ API key authentication
-✅ Text queries only
-✅ Standard error handling
-❌ Never sends email bodies
-❌ Never sends sensitive data
+[OK] HTTPS only (TLS 1.3)
+[OK] API key authentication
+[OK] Text queries only
+[OK] Standard error handling
+ Never sends email bodies
+ Never sends sensitive data
 ```
 
 ### Gmail API
 
 ```
-✅ OAuth 2.0 authentication
-✅ User-provided credentials
-✅ Scoped permissions (email only)
-✅ Standard Google security
-✅ HTTPS/TLS encrypted
+[OK] OAuth 2.0 authentication
+[OK] User-provided credentials
+[OK] Scoped permissions (email only)
+[OK] Standard Google security
+[OK] HTTPS/TLS encrypted
 ```
 
 ---
 
-## 🔐 Deployment Security
+## Deployment Security
 
 ### Vercel Security Headers
 
@@ -363,30 +363,30 @@ Permissions-Policy: geolocation=(), microphone=(), camera=()
 
 ```
 .env file:
-✅ Contains sensitive keys
-✅ Never committed to git
-✅ Accessible to app only
-✅ Restricted permissions (600)
+[OK] Contains sensitive keys
+[OK] Never committed to git
+[OK] Accessible to app only
+[OK] Restricted permissions (600)
 
 Vercel secrets:
-✅ Encrypted at rest
-✅ Never logged
-✅ Only accessible to app
-✅ Rotatable
+[OK] Encrypted at rest
+[OK] Never logged
+[OK] Only accessible to app
+[OK] Rotatable
 ```
 
 ### HTTPS/TLS
 
 ```
-✅ All connections encrypted
-✅ TLS 1.3 minimum
-✅ Certificate validation
-✅ HSTS enabled (Vercel default)
+[OK] All connections encrypted
+[OK] TLS 1.3 minimum
+[OK] Certificate validation
+[OK] HSTS enabled (Vercel default)
 ```
 
 ---
 
-## 🧪 Security Testing
+## Security Testing
 
 ### Input Validation Tests
 
@@ -405,21 +405,21 @@ npm run test -- input-validator
 ### Penetration Testing Checklist
 
 ```
-✅ XSS injection attempts
-✅ SQL injection attempts
-✅ Command injection attempts
-✅ Path traversal attempts
-✅ CSRF attacks
-✅ Rate limiting bypass
-✅ Authentication bypass
-✅ Authorization bypass
-✅ Data exposure
-✅ DoS attacks
+[OK] XSS injection attempts
+[OK] SQL injection attempts
+[OK] Command injection attempts
+[OK] Path traversal attempts
+[OK] CSRF attacks
+[OK] Rate limiting bypass
+[OK] Authentication bypass
+[OK] Authorization bypass
+[OK] Data exposure
+[OK] DoS attacks
 ```
 
 ---
 
-## 🚨 Incident Response
+## Incident Response
 
 ### If an Exploit is Found
 
@@ -439,7 +439,7 @@ Instead, email: `security@coastalalpine.tech`
 
 ---
 
-## 📋 Security Checklist
+## Security Checklist
 
 ### Pre-Deployment
 
@@ -474,7 +474,7 @@ Instead, email: `security@coastalalpine.tech`
 
 ---
 
-## 🔐 Best Practices for Users
+## Best Practices for Users
 
 ### Secure Your Installation
 
@@ -483,7 +483,7 @@ Instead, email: `security@coastalalpine.tech`
 chmod 600 .env
 
 # Secure .env file (Windows)
-# Right-click → Properties → Security → Advanced
+# Right-click -> Properties -> Security -> Advanced
 # Remove all users except yourself
 ```
 
@@ -512,7 +512,7 @@ tail -f logs/audit.log
 
 ```bash
 # Update Node.js regularly
-node --version  # Check current
+node --version # Check current
 # Update from nodejs.org or brew
 
 # Update dependencies
@@ -522,7 +522,7 @@ npm audit fix
 
 ---
 
-## 📚 Security Resources
+## Security Resources
 
 - [OWASP Top 10](https://owasp.org/Top10/)
 - [Node.js Security Best Practices](https://nodejs.org/en/docs/guides/security/)
@@ -531,7 +531,7 @@ npm audit fix
 
 ---
 
-## 🆘 Getting Help
+## Getting Help
 
 ### Security Questions
 
@@ -555,33 +555,33 @@ We'll:
 
 ---
 
-## ✅ Compliance
+## [OK] Compliance
 
 ### NZ Privacy Act 2020
 
-✅ PP1: Collect only what's needed
-✅ PP2: Use data only for stated purpose
-✅ PP3-13: All other principles met
+[OK] PP1: Collect only what's needed
+[OK] PP2: Use data only for stated purpose
+[OK] PP3-13: All other principles met
 
 ### GDPR-Adjacent
 
 While CAT doesn't process EU data, it follows GDPR principles:
-- ✅ Data minimization
-- ✅ Purpose limitation
-- ✅ Storage limitation
-- ✅ Integrity and confidentiality
+- [OK] Data minimization
+- [OK] Purpose limitation
+- [OK] Storage limitation
+- [OK] Integrity and confidentiality
 
 ### Industry Standards
 
-- ✅ OWASP guidelines
-- ✅ Node.js best practices
-- ✅ OAuth 2.0 standards
-- ✅ TLS/HTTPS standards
+- [OK] OWASP guidelines
+- [OK] Node.js best practices
+- [OK] OAuth 2.0 standards
+- [OK] TLS/HTTPS standards
 
 ---
 
-**Last Updated**: July 14, 2026  
-**Status**: ✅ Security Hardened  
+**Last Updated**: July 14, 2026 
+**Status**: [OK] Security Hardened 
 **Audit Level**: Comprehensive
 
-*Security is not a feature—it's a requirement.*
+*Security is not a feature-it's a requirement.*

@@ -10,31 +10,31 @@ The Coastal Alpine Tech (CAT) Email Agent is a privacy-first AI email management
 - **Transparency**: Open-source, auditable, clear documentation
 - **No Third-Party Sharing**: Data never leaves your device or Gmail (which you control)
 
-This is not just a privacy statement—it's enforced in code through guardrails, data handlers, and preferences managers.
+This is not just a privacy statement-it's enforced in code through guardrails, data handlers, and preferences managers.
 
 ## Project Structure
 
 ```
 src/
-├── agent/
-│   ├── email-agent.ts           # Main agent with privacy enforcement
-│   └── tools/
-│       └── email-tools.ts       # Tool definitions and implementations
-├── adapters/
-│   ├── gmail.ts                 # Gmail API integration
-│   └── types.ts                 # Shared TypeScript interfaces
-├── classifiers/
-│   └── spam-classifier.ts       # Spam detection (no retention)
-├── security/ *** PRIVACY LAYER ***
-│   ├── privacy-guardrails.ts    # Operation validation & audit logs
-│   ├── data-handler.ts          # In-memory processing, auto-cleanup
-│   └── preferences.ts           # Local-only user preferences
-├── utils/
-│   └── logger.ts                # Logging (no email content)
-└── index.ts                     # Entry point
+|-- agent/
+| |-- email-agent.ts # Main agent with privacy enforcement
+| `-- tools/
+| `-- email-tools.ts # Tool definitions and implementations
+|-- adapters/
+| |-- gmail.ts # Gmail API integration
+| `-- types.ts # Shared TypeScript interfaces
+|-- classifiers/
+| `-- spam-classifier.ts # Spam detection (no retention)
+|-- security/ *** PRIVACY LAYER ***
+| |-- privacy-guardrails.ts # Operation validation & audit logs
+| |-- data-handler.ts # In-memory processing, auto-cleanup
+| `-- preferences.ts # Local-only user preferences
+|-- utils/
+| `-- logger.ts # Logging (no email content)
+`-- index.ts # Entry point
 
 tests/
-└── email-agent.test.ts          # Unit tests
+`-- email-agent.test.ts # Unit tests
 ```
 
 ## Key Patterns
@@ -57,23 +57,23 @@ tests/
 
 ### Privacy Enforcement Layer (Security Module)
 - **PrivacyGuardrails**: Validates all operations before execution
-  - Blocks data export, contact scraping, third-party sharing
-  - Maintains content-free audit logs for compliance
-  - Enforces in-memory-only processing
-  - Detects and prevents privacy violations
+ - Blocks data export, contact scraping, third-party sharing
+ - Maintains content-free audit logs for compliance
+ - Enforces in-memory-only processing
+ - Detects and prevents privacy violations
 
 - **DataHandler**: Manages in-memory data lifecycle
-  - Volatile storage with auto-cleanup (default: 30s TTL)
-  - Session data cleared between commands
-  - Email content never retained
-  - Hard-delete on session end
+ - Volatile storage with auto-cleanup (default: 30s TTL)
+ - Session data cleared between commands
+ - Email content never retained
+ - Hard-delete on session end
 
 - **PreferencesManager**: Local-only user preferences
-  - Block lists (sender emails only)
-  - Reply templates (stored locally)
-  - Unsubscribe lists (domains only)
-  - Custom spam keywords
-  - **NEVER synced to cloud, NEVER shared**
+ - Block lists (sender emails only)
+ - Reply templates (stored locally)
+ - Unsubscribe lists (domains only)
+ - Custom spam keywords
+ - **NEVER synced to cloud, NEVER shared**
 
 ### Agent Interaction Flow
 1. User provides natural language command
@@ -106,11 +106,11 @@ GMAIL_REFRESH_TOKEN=your_refresh_token (after OAuth)
 ## Development Commands
 
 ```bash
-npm run dev          # Run with ts-node
-npm run build        # Compile TypeScript
-npm run typecheck    # Check types
-npm run lint         # Run ESLint
-npm run test         # Run tests
+npm run dev # Run with ts-node
+npm run build # Compile TypeScript
+npm run typecheck # Check types
+npm run lint # Run ESLint
+npm run test # Run tests
 ```
 
 ## Adding New Features
@@ -165,20 +165,20 @@ Update `buildSystemPrompt()` in EmailAgent to guide Claude's behavior in new way
 
 ### Data Lifecycle (CRITICAL)
 ```
-Email Received → Process in RAM → Generate Response → DELETE from RAM → Nothing Remains
+Email Received -> Process in RAM -> Generate Response -> DELETE from RAM -> Nothing Remains
 ```
 
 **No email ever touches disk. No email ever leaves your device (except to Gmail, which you control).**
 
 ### Guardrail Examples
 ```typescript
-// ALLOWED ✅
-validateOperation('delete', { emailIds: [...] })        // Returns true
+// ALLOWED [OK]
+validateOperation('delete', { emailIds: [...] }) // Returns true
 
-// BLOCKED ❌
-validateOperation('exportEmails', {...})                // Returns false
-validateOperation('scrapeContacts', {...})              // Returns false
-validateOperation('forwardToThirdParty', {...})         // Returns false
+// BLOCKED 
+validateOperation('exportEmails', {...}) // Returns false
+validateOperation('scrapeContacts', {...}) // Returns false
+validateOperation('forwardToThirdParty', {...}) // Returns false
 ```
 
 ### Data Handler Usage Pattern
@@ -188,7 +188,7 @@ dataHandler.storeVolatile('temp_emails', emails);
 
 // Process email with guaranteed cleanup
 const result = dataHandler.processEmailTemporarily(email, (e) => {
-  return classify(e); // Email is forgotten after this
+ return classify(e); // Email is forgotten after this
 });
 
 // Always clear session data
@@ -225,17 +225,17 @@ const blocked = preferencesManager.getBlockList();
 
 ## Security Notes - MANDATORY
 
-- ✅ **DO**: Log operation types (delete, search, send)
-- ✅ **DO**: Log operation outcomes (success, failure)
-- ✅ **DO**: Log error types (connection, invalid input)
-- ✅ **DO**: Validate all user inputs
+- [OK] **DO**: Log operation types (delete, search, send)
+- [OK] **DO**: Log operation outcomes (success, failure)
+- [OK] **DO**: Log error types (connection, invalid input)
+- [OK] **DO**: Validate all user inputs
 
-- ❌ **NEVER**: Log email contents, subjects, or snippets
-- ❌ **NEVER**: Store email addresses (except block list)
-- ❌ **NEVER**: Log user's Gmail credentials
-- ❌ **NEVER**: Log API keys or tokens
-- ❌ **NEVER**: Create backups of emails
-- ❌ **NEVER**: Export email data
+- **NEVER**: Log email contents, subjects, or snippets
+- **NEVER**: Store email addresses (except block list)
+- **NEVER**: Log user's Gmail credentials
+- **NEVER**: Log API keys or tokens
+- **NEVER**: Create backups of emails
+- **NEVER**: Export email data
 
 ### Compliance Verification
 ```bash

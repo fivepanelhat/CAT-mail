@@ -4,7 +4,7 @@
 
 ---
 
-## 🪟 Prerequisites for Windows
+## Prerequisites for Windows
 
 ### Supported Windows Versions
 - Windows 10 (Build 19041+)
@@ -28,7 +28,7 @@
 
 ---
 
-## 📦 Installation (Windows)
+## Installation (Windows)
 
 ### Step 1: Install Node.js
 
@@ -38,10 +38,10 @@
 2. Download LTS version (20.x)
 3. Run installer (.msi)
 4. Follow installer wizard:
-   - Accept license
-   - Choose installation path
-   - Include npm
-   - Accept defaults
+ - Accept license
+ - Choose installation path
+ - Include npm
+ - Accept defaults
 
 #### Option B: Chocolatey
 
@@ -78,11 +78,11 @@ npm --version
 
 ```powershell
 # Test Node.js
-node --version    # Should be v20.x.x or higher
-npm --version     # Should be 9.x.x or higher
+node --version # Should be v20.x.x or higher
+npm --version # Should be 9.x.x or higher
 
 # Test npm
-npm list -g --depth=0  # Shows globally installed packages
+npm list -g --depth=0 # Shows globally installed packages
 ```
 
 ### Step 2: Clone and Setup Project
@@ -99,7 +99,7 @@ cd cat-mail
 npm install
 
 # Verify installation
-npm run typecheck  # Should compile without errors
+npm run typecheck # Should compile without errors
 ```
 
 **Alternative without Git:**
@@ -141,9 +141,9 @@ LOG_LEVEL=INFO
 $acl = Get-Acl ".env"
 $acl.SetAccessRuleProtection($true, $false)
 $rule = New-Object System.Security.AccessControl.FileSystemAccessRule(
-    [System.Security.Principal.WindowsIdentity]::GetCurrent().User,
-    "FullControl",
-    "Allow"
+ [System.Security.Principal.WindowsIdentity]::GetCurrent().User,
+ "FullControl",
+ "Allow"
 )
 $acl.SetAccessRule($rule)
 Set-Acl ".env" $acl
@@ -154,7 +154,7 @@ Get-Acl .env | Format-List
 
 ---
 
-## 🚀 Running on Windows
+## Running on Windows
 
 ### Quick Start
 
@@ -188,7 +188,7 @@ node dist\index.js "your command here"
 
 ---
 
-## 📊 Memory Usage (Windows)
+## Memory Usage (Windows)
 
 ### Typical Memory Footprint
 
@@ -219,14 +219,14 @@ Get-Process | Where-Object {$_.ProcessName -eq "node"} | Select-Object Name, Wor
 
 # Convert to MB
 Get-Process | Where-Object {$_.ProcessName -eq "node"} | 
-  Select-Object Name, @{Name="Memory (MB)";Expression={[math]::Round($_.WorkingSet64/1MB, 2)}}
+ Select-Object Name, @{Name="Memory (MB)";Expression={[math]::Round($_.WorkingSet64/1MB, 2)}}
 
 # Continuous monitoring
 while($true) {
-    Clear-Host
-    Get-Process | Where-Object {$_.ProcessName -eq "node"} | 
-      Select-Object Name, @{Name="Memory (MB)";Expression={[math]::Round($_.WorkingSet64/1MB, 2)}}
-    Start-Sleep -Seconds 2
+ Clear-Host
+ Get-Process | Where-Object {$_.ProcessName -eq "node"} | 
+ Select-Object Name, @{Name="Memory (MB)";Expression={[math]::Round($_.WorkingSet64/1MB, 2)}}
+ Start-Sleep -Seconds 2
 }
 ```
 
@@ -241,31 +241,31 @@ npm run dev
 $env:NODE_OPTIONS = ""
 
 # Memory limit options:
-# --max-old-space-size=256   → 256 MB max
-# --max-old-space-size=512   → 512 MB max
-# --max-old-space-size=1024  → 1 GB max
+# --max-old-space-size=256 -> 256 MB max
+# --max-old-space-size=512 -> 512 MB max
+# --max-old-space-size=1024 -> 1 GB max
 ```
 
 ### Memory Behavior
 
 ```
 Session Start
-    ↓ (~80 MB)
+ (~80 MB)
 Command Processing
-    ↓ (~150-250 MB - in-memory email data)
+ (~150-250 MB - in-memory email data)
 Email Operations
-    ↓ (~200 MB peak)
+ (~200 MB peak)
 Result Generated
-    ↓ (~150 MB)
+ (~150 MB)
 [Automatic Cleanup]
-    ↓ (~80 MB baseline)
+ (~80 MB baseline)
 ```
 
 **Key Point**: Memory returns to baseline immediately. No persistent growth.
 
 ---
 
-## 🔄 Windows Task Scheduler (Auto-Start)
+## Windows Task Scheduler (Auto-Start)
 
 ### Create Scheduled Task
 
@@ -274,22 +274,22 @@ Result Generated
 $TaskName = "CAT-Email-Agent"
 $TaskDescription = "Coastal Alpine Tech Email Agent"
 $TaskAction = New-ScheduledTaskAction -Execute "C:\Program Files\nodejs\node.exe" `
-    -Argument "D:\cat-mail\dist\index.js" `
-    -WorkingDirectory "D:\cat-mail"
+ -Argument "D:\cat-mail\dist\index.js" `
+ -WorkingDirectory "D:\cat-mail"
 
 $TaskTrigger = New-ScheduledTaskTrigger -AtStartup
 
 $TaskSettings = New-ScheduledTaskSettingsSet -StartWhenAvailable `
-    -DontStopIfGoingOnBatteries `
-    -AllowStartIfOnBatteries `
-    -MultipleInstances IgnoreNew
+ -DontStopIfGoingOnBatteries `
+ -AllowStartIfOnBatteries `
+ -MultipleInstances IgnoreNew
 
 Register-ScheduledTask -TaskName $TaskName `
-    -Action $TaskAction `
-    -Trigger $TaskTrigger `
-    -Settings $TaskSettings `
-    -Description $TaskDescription `
-    -RunLevel Highest
+ -Action $TaskAction `
+ -Trigger $TaskTrigger `
+ -Settings $TaskSettings `
+ -Description $TaskDescription `
+ -RunLevel Highest
 ```
 
 ### Manage Scheduled Task
@@ -312,19 +312,19 @@ Unregister-ScheduledTask -TaskName "CAT-Email-Agent" -Confirm:$false
 
 # View logs
 Get-EventLog -LogName "Windows PowerShell" -Source PowerShell | 
-  Where-Object {$_.Message -like "*CAT*"} | 
-  Select-Object -Last 10
+ Where-Object {$_.Message -like "*CAT*"} | 
+ Select-Object -Last 10
 ```
 
 ---
 
-## 🐳 Docker for Windows
+## Docker for Windows
 
 ### Prerequisites
 
 1. Install [Docker Desktop for Windows](https://www.docker.com/products/docker-desktop)
 2. Enable WSL 2 backend
-3. Allocate sufficient resources (Settings → Resources)
+3. Allocate sufficient resources (Settings -> Resources)
 
 ### Build and Run
 
@@ -334,18 +334,18 @@ docker build -t cat-mail:latest .
 
 # Run container
 docker run -it `
-  --env-file .env `
-  --memory 512m `
-  --cpus 1 `
-  --name cat-mail-agent `
-  cat-mail:latest
+ --env-file .env `
+ --memory 512m `
+ --cpus 1 `
+ --name cat-mail-agent `
+ cat-mail:latest
 
 # Run with command
 docker run -it `
-  --env-file .env `
-  --memory 512m `
-  cat-mail:latest `
-  "delete spam emails"
+ --env-file .env `
+ --memory 512m `
+ cat-mail:latest `
+ "delete spam emails"
 
 # View logs
 docker logs cat-mail-agent
@@ -369,7 +369,7 @@ docker-compose down
 
 ---
 
-## 🔒 Security Hardening (Windows)
+## Security Hardening (Windows)
 
 ### Secure .env File
 
@@ -378,9 +378,9 @@ docker-compose down
 $acl = Get-Acl ".env"
 $acl.SetAccessRuleProtection($true, $false)
 $rule = New-Object System.Security.AccessControl.FileSystemAccessRule(
-    [System.Security.Principal.WindowsIdentity]::GetCurrent().User,
-    "FullControl",
-    "Allow"
+ [System.Security.Principal.WindowsIdentity]::GetCurrent().User,
+ "FullControl",
+ "Allow"
 )
 $acl.SetAccessRule($rule)
 Set-Acl ".env" $acl
@@ -401,10 +401,10 @@ Get-MpPreference | Select-Object -ExpandProperty ExclusionPath
 ```powershell
 # Allow port 3000 (OAuth callback)
 New-NetFirewallRule -DisplayName "CAT Mail - OAuth" `
-    -Direction Inbound `
-    -Action Allow `
-    -Protocol TCP `
-    -LocalPort 3000
+ -Direction Inbound `
+ -Action Allow `
+ -Protocol TCP `
+ -LocalPort 3000
 
 # View rules
 Get-NetFirewallRule | Where-Object {$_.DisplayName -like "*CAT*"}
@@ -415,7 +415,7 @@ Remove-NetFirewallRule -DisplayName "CAT Mail - OAuth" -Confirm:$false
 
 ---
 
-## 📈 Performance Monitoring (Windows)
+## Performance Monitoring (Windows)
 
 ### Performance Monitor
 
@@ -446,12 +446,12 @@ resmon.exe
 
 # View process details
 Get-Process | Where-Object {$_.ProcessName -eq "node"} | 
-  Format-List ProcessName, WorkingSet64, CPU, Threads
+ Format-List ProcessName, WorkingSet64, CPU, Threads
 ```
 
 ---
 
-## 🆘 Troubleshooting (Windows)
+## Troubleshooting (Windows)
 
 ### PowerShell Execution Policy
 
@@ -484,8 +484,8 @@ Stop-Process -Id <PID> -Force
 ```powershell
 # Check available memory
 Get-WmiObject Win32_OperatingSystem | 
-  Select-Object @{Name="Total Memory (GB)"; Expression={[math]::Round($_.TotalVisibleMemorySize/1MB, 2)}},
-                 @{Name="Free Memory (GB)"; Expression={[math]::Round($_.FreePhysicalMemory/1MB, 2)}}
+ Select-Object @{Name="Total Memory (GB)"; Expression={[math]::Round($_.TotalVisibleMemorySize/1MB, 2)}},
+ @{Name="Free Memory (GB)"; Expression={[math]::Round($_.FreePhysicalMemory/1MB, 2)}}
 
 # Increase Node.js memory limit
 $env:NODE_OPTIONS = "--max-old-space-size=1024"
@@ -524,7 +524,7 @@ npm --version
 
 ---
 
-## 📝 Logging (Windows)
+## Logging (Windows)
 
 ### View Logs
 
@@ -551,7 +551,7 @@ Get-EventLog -LogName "Application" | Export-Csv -Path events.csv
 
 ---
 
-## ✅ Windows Deployment Checklist
+## [OK] Windows Deployment Checklist
 
 - [ ] Windows 10/11 or Server 2019+
 - [ ] Node.js 18+ installed and verified
@@ -571,27 +571,27 @@ Get-EventLog -LogName "Application" | Export-Csv -Path events.csv
 
 ---
 
-## 🚀 Production Deployment (Windows)
+## Production Deployment (Windows)
 
 ### Recommended Setup
 
 ```
-┌──────────────────────────────────────┐
-│    Windows Task Scheduler            │
-│    (Run at Startup)                  │
-├──────────────────────────────────────┤
-│  CAT Email Agent                     │
-│  - Memory: 512 MB limit              │
-│  - Priority: Normal                  │
-│  - Auto-restart on failure           │
-├──────────────────────────────────────┤
-│  Config & Logs (Local Storage)       │
-│  - C:\Users\[user]\cat-mail\config   │
-│  - C:\Users\[user]\cat-mail\logs     │
-├──────────────────────────────────────┤
-│  Gmail API (OAuth 2.0)               │
-│  Anthropic API (Language)            │
-└──────────────────────────────────────┘
+--------------------------------------
+| Windows Task Scheduler |
+| (Run at Startup) |
+|--------------------------------------
+| CAT Email Agent |
+| - Memory: 512 MB limit |
+| - Priority: Normal |
+| - Auto-restart on failure |
+|--------------------------------------
+| Config & Logs (Local Storage) |
+| - C:\Users\[user]\cat-mail\config |
+| - C:\Users\[user]\cat-mail\logs |
+|--------------------------------------
+| Gmail API (OAuth 2.0) |
+| Anthropic API (Language) |
+`--------------------------------------
 ```
 
 ### Setup Steps
@@ -610,17 +610,17 @@ node dist\index.js "test command"
 
 ---
 
-## 📞 Windows Support
+## Windows Support
 
-**Node.js Issues**: Reinstall from nodejs.org or use Chocolatey  
-**Permission Errors**: Run PowerShell as Administrator  
-**Port Conflicts**: Use netstat or Get-NetTCPConnection to find process  
-**Memory Issues**: Check Task Manager, adjust NODE_OPTIONS  
-**OAuth Issues**: Verify firewall allows port 3000  
+**Node.js Issues**: Reinstall from nodejs.org or use Chocolatey 
+**Permission Errors**: Run PowerShell as Administrator 
+**Port Conflicts**: Use netstat or Get-NetTCPConnection to find process 
+**Memory Issues**: Check Task Manager, adjust NODE_OPTIONS 
+**OAuth Issues**: Verify firewall allows port 3000 
 
 ---
 
-## 🔗 Useful Windows Commands
+## Useful Windows Commands
 
 ```powershell
 # Get Node processes
@@ -642,7 +642,7 @@ New-Item -ItemType Directory -Path "C:\path\to\folder" -Force
 
 ---
 
-**Last Updated**: July 14, 2026  
-**Status**: ✅ Production Ready for Windows  
+**Last Updated**: July 14, 2026 
+**Status**: [OK] Production Ready for Windows 
 
 *Privacy is a right. Windows is familiar.*

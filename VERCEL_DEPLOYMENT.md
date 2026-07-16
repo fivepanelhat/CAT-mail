@@ -1,4 +1,4 @@
-# 🚀 Vercel Deployment Guide - New Project
+# Vercel Deployment Guide - New Project
 
 Deploy CAT Mail landing page to a new Vercel project in under 5 minutes.
 
@@ -14,12 +14,12 @@ Visit: https://vercel.com/new
 
 ## Step 2: Import GitHub Repository
 
-1. Click **"Import Git Repository"**
+1. Click **Import Git Repository"**
 2. Paste your repository URL:
-   ```
-   https://github.com/fivepanelhat/CAT-mail
-   ```
-3. Click **"Continue"**
+ ```
+ https://github.com/fivepanelhat/CAT-mail
+ ```
+3. Click **Continue"**
 
 ---
 
@@ -39,7 +39,7 @@ Visit: https://vercel.com/new
 
 ## Step 4: Deploy
 
-Click **"Deploy"** and wait for deployment to complete (1-2 minutes).
+Click **Deploy"** and wait for deployment to complete (1-2 minutes).
 
 ---
 
@@ -47,8 +47,8 @@ Click **"Deploy"** and wait for deployment to complete (1-2 minutes).
 
 Once deployment completes, Vercel will show:
 ```
-✅ Deployment Complete!
-🔗 Your URL: https://your-project-name.vercel.app
+[OK] Deployment Complete!
+ Your URL: https://your-project-name.vercel.app
 ```
 
 Copy this URL.
@@ -91,15 +91,15 @@ git push origin master
 
 Visit your new Vercel URL and verify you see:
 
-✅ Dark blue gradient background  
-✅ Animated blobs flowing  
-✅ "Coastal Alpine Tech Email Agent" title  
-✅ Glass cards with liquid morphism  
-✅ Feature grid  
-✅ Pricing section  
-✅ Installation guide  
-✅ Documentation links  
-✅ Security badge (bottom-right)  
+[OK] Dark blue gradient background 
+[OK] Animated blobs flowing 
+[OK] "Coastal Alpine Tech Email Agent" title 
+[OK] Glass cards with liquid morphism 
+[OK] Feature grid 
+[OK] Pricing section 
+[OK] Installation guide 
+[OK] Documentation links 
+[OK] Security badge (bottom-right) 
 
 ---
 
@@ -135,15 +135,15 @@ If you want a custom domain like `mail.yourdomain.com`:
 
 ## Final Steps
 
-1. ✅ Deploy to new Vercel project
-2. ✅ Get new URL
-3. ✅ Update all links in repository
-4. ✅ Commit and push
-5. ✅ Verify deployment works
-6. ✅ Share new link with team
+1. [OK] Deploy to new Vercel project
+2. [OK] Get new URL
+3. [OK] Update all links in repository
+4. [OK] Commit and push
+5. [OK] Verify deployment works
+6. [OK] Share new link with team
 
 ---
 
 **Questions?** Check Vercel docs: https://vercel.com/docs
 
-🎉 **Your landing page will be live in minutes!**
+ **Your landing page will be live in minutes!**

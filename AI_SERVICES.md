@@ -1,10 +1,10 @@
-# 🧠 AI Services Configuration Guide
+# AI Services Configuration Guide
 
 CAT Mail supports **4 different AI backends**. Choose any one based on your preference and availability.
 
 ---
 
-## 🆚 Comparison Table
+## Comparison Table
 
 | Feature | Claude | Gemini | OpenAI | Grok |
 |---------|--------|--------|--------|------|
@@ -18,26 +18,26 @@ CAT Mail supports **4 different AI backends**. Choose any one based on your pref
 
 ---
 
-## 🔐 Claude (Anthropic) - **RECOMMENDED**
+## Claude (Anthropic) - **RECOMMENDED**
 
 ### Setup
 
 1. **Get API Key**
-   - Visit: https://console.anthropic.com
-   - Create account or sign in
-   - Go to "API Keys"
-   - Click "Create Key"
+ - Visit: https://console.anthropic.com
+ - Create account or sign in
+ - Go to "API Keys"
+ - Click "Create Key"
 
 2. **Update `.env`**
-   ```env
-   AI_SERVICE=claude
-   ANTHROPIC_API_KEY=sk-ant-your-api-key-here
-   ```
+ ```env
+ AI_SERVICE=claude
+ ANTHROPIC_API_KEY=sk-ant-your-api-key-here
+ ```
 
 3. **Test**
-   ```bash
-   npm run dev "show my unread emails"
-   ```
+ ```bash
+ npm run dev "show my unread emails"
+ ```
 
 ### Pricing
 - Input: $3 per million tokens
@@ -45,33 +45,33 @@ CAT Mail supports **4 different AI backends**. Choose any one based on your pref
 - Free tier: Yes, limited usage
 
 ### Why Claude?
-✅ Best for privacy  
-✅ Strong instruction following  
-✅ Excellent at email classification  
-✅ Affordable  
+[OK] Best for privacy 
+[OK] Strong instruction following 
+[OK] Excellent at email classification 
+[OK] Affordable 
 
 ---
 
-## 🎨 Gemini (Google)
+## Gemini (Google)
 
 ### Setup
 
 1. **Get API Key**
-   - Visit: https://makersuite.google.com
-   - Sign in with Google account
-   - Click "Create API Key"
-   - Copy the key
+ - Visit: https://makersuite.google.com
+ - Sign in with Google account
+ - Click "Create API Key"
+ - Copy the key
 
 2. **Update `.env`**
-   ```env
-   AI_SERVICE=gemini
-   GEMINI_API_KEY=your-gemini-key-here
-   ```
+ ```env
+ AI_SERVICE=gemini
+ GEMINI_API_KEY=your-gemini-key-here
+ ```
 
 3. **Test**
-   ```bash
-   npm run dev "delete spam emails"
-   ```
+ ```bash
+ npm run dev "delete spam emails"
+ ```
 
 ### Pricing
 - Input: $0.075 per million tokens
@@ -79,38 +79,38 @@ CAT Mail supports **4 different AI backends**. Choose any one based on your pref
 - Free tier: Yes, very generous
 
 ### Why Gemini?
-✅ Cheapest option  
-✅ Very fast responses  
-✅ Good at understanding context  
-✅ Free tier is quite generous  
+[OK] Cheapest option 
+[OK] Very fast responses 
+[OK] Good at understanding context 
+[OK] Free tier is quite generous 
 
 ---
 
-## 💡 OpenAI (GPT-4)
+## OpenAI (GPT-4)
 
 ### Setup
 
 1. **Get API Key**
-   - Visit: https://platform.openai.com/account/api-keys
-   - Sign in or create account
-   - Click "Create new secret key"
-   - Copy the key (won't show again)
+ - Visit: https://platform.openai.com/account/api-keys
+ - Sign in or create account
+ - Click "Create new secret key"
+ - Copy the key (won't show again)
 
 2. **Add Billing**
-   - Go to: https://platform.openai.com/account/billing/overview
-   - Add payment method
-   - Set usage limits (recommended: $5/month)
+ - Go to: https://platform.openai.com/account/billing/overview
+ - Add payment method
+ - Set usage limits (recommended: $5/month)
 
 3. **Update `.env`**
-   ```env
-   AI_SERVICE=openai
-   OPENAI_API_KEY=sk-proj-your-api-key-here
-   ```
+ ```env
+ AI_SERVICE=openai
+ OPENAI_API_KEY=sk-proj-your-api-key-here
+ ```
 
 4. **Test**
-   ```bash
-   npm run dev "archive emails from 2024"
-   ```
+ ```bash
+ npm run dev "archive emails from 2024"
+ ```
 
 ### Pricing
 - Input: $10 per million tokens (GPT-4 Turbo)
@@ -118,33 +118,33 @@ CAT Mail supports **4 different AI backends**. Choose any one based on your pref
 - Free trial: None (requires payment)
 
 ### Why OpenAI?
-✅ Most powerful model  
-✅ Best at complex tasks  
-✅ Excellent reliability  
-✅ Largest community  
+[OK] Most powerful model 
+[OK] Best at complex tasks 
+[OK] Excellent reliability 
+[OK] Largest community 
 
 ---
 
-## ⚡ Grok (xAI)
+## Grok (xAI)
 
 ### Setup
 
 1. **Get API Key**
-   - Visit: https://console.x.ai
-   - Sign in with X (Twitter) account
-   - Create new API key
-   - Copy the key
+ - Visit: https://console.x.ai
+ - Sign in with X (Twitter) account
+ - Create new API key
+ - Copy the key
 
 2. **Update `.env`**
-   ```env
-   AI_SERVICE=grok
-   GROK_API_KEY=your-grok-api-key-here
-   ```
+ ```env
+ AI_SERVICE=grok
+ GROK_API_KEY=your-grok-api-key-here
+ ```
 
 3. **Test**
-   ```bash
-   npm run dev "block sender@domain.com"
-   ```
+ ```bash
+ npm run dev "block sender@domain.com"
+ ```
 
 ### Pricing
 - Input: $5 per million tokens
@@ -152,14 +152,14 @@ CAT Mail supports **4 different AI backends**. Choose any one based on your pref
 - Free tier: Limited
 
 ### Why Grok?
-✅ Fast and witty responses  
-✅ Good at complex reasoning  
-✅ Moderate pricing  
-✅ New and innovative  
+[OK] Fast and witty responses 
+[OK] Good at complex reasoning 
+[OK] Moderate pricing 
+[OK] New and innovative 
 
 ---
 
-## 🔄 Switching Services
+## Switching Services
 
 Change AI service anytime by updating `.env`:
 
@@ -188,33 +188,33 @@ npm run dev "your command"
 
 ---
 
-## 🎯 Recommendations
+## Recommendations
 
 ### For Cost-Conscious Users
-→ **Gemini** (Free tier with generous limits)
+-> **Gemini** (Free tier with generous limits)
 
 ### For Best Quality
-→ **OpenAI** (Most capable, but priciest)
+-> **OpenAI** (Most capable, but priciest)
 
 ### For Privacy Focus
-→ **Claude** (Best privacy controls, Anthropic's focus)
+-> **Claude** (Best privacy controls, Anthropic's focus)
 
 ### For Speed
-→ **Gemini** or **Grok** (Very fast responses)
+-> **Gemini** or **Grok** (Very fast responses)
 
 ### For Balanced Choice
-→ **Claude** (Good balance of quality, cost, and privacy)
+-> **Claude** (Good balance of quality, cost, and privacy)
 
 ---
 
-## 🔐 Privacy & Security Notes
+## Privacy & Security Notes
 
 **All services respect your privacy:**
-- ✅ No email content is stored
-- ✅ No data is retained after operation
-- ✅ No behavioral profiling
-- ✅ No third-party sharing
-- ✅ All processing is in-memory only
+- [OK] No email content is stored
+- [OK] No data is retained after operation
+- [OK] No behavioral profiling
+- [OK] No third-party sharing
+- [OK] All processing is in-memory only
 
 **Each service has its own privacy policy:**
 - Claude: https://www.anthropic.com/privacy
@@ -224,7 +224,7 @@ npm run dev "your command"
 
 ---
 
-## ⚙️ Configuration Examples
+## Configuration Examples
 
 ### Example 1: Full Config with Claude
 ```env
@@ -267,7 +267,7 @@ LOG_LEVEL=INFO
 
 ---
 
-## 🆘 Troubleshooting
+## Troubleshooting
 
 ### "API key invalid"
 - Verify you copied the key correctly
@@ -291,7 +291,7 @@ LOG_LEVEL=INFO
 
 ---
 
-## 📊 Token Usage Estimates
+## Token Usage Estimates
 
 **Typical email operation:** 500-2000 tokens
 
@@ -311,7 +311,7 @@ LOG_LEVEL=INFO
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 1. **Choose your AI service** (see recommendations above)
 2. **Get API key** (follow setup for that service)
@@ -327,4 +327,4 @@ npm run dev "show my unread emails"
 
 **Need help?** Check [QUICK_START.md](QUICK_START.md) or [README.md](README.md)
 
-🔒 **Privacy First. Choose Your AI. Automate Your Email.**
+ **Privacy First. Choose Your AI. Automate Your Email.**

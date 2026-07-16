@@ -1,24 +1,24 @@
-# 🚀 Quick Start Guide - CAT Email Agent
+# Quick Start Guide - CAT Email Agent
 
 **Get up and running in 5 minutes**
 
-> 🔒 Privacy-first, zero data retention, NZ Privacy Act compliant
+> Privacy-first, zero data retention, NZ Privacy Act compliant
 
 ---
 
-## 🚨 The Problem We Solve
+## The Problem We Solve
 
 **Email clients are privacy nightmares:**
-- 📊 Store everything forever
-- 👀 Track and profile your behavior
-- 🔗 Share data with third parties
-- 🤷 No control over your information
+- Store everything forever
+- Track and profile your behavior
+- Share data with third parties
+- No control over your information
 
 **Our solution:**
-- ✅ Zero data retention (in-memory only)
-- ✅ No profiling or tracking
-- ✅ No third-party sharing
-- ✅ You control everything via OAuth
+- [OK] Zero data retention (in-memory only)
+- [OK] No profiling or tracking
+- [OK] No third-party sharing
+- [OK] You control everything via OAuth
 
 ---
 
@@ -29,8 +29,8 @@
 - **Node.js 18+** (download from [nodejs.org](https://nodejs.org))
 - **Gmail OAuth credentials** (from [Google Cloud Console](https://console.cloud.google.com))
 - **AI API Key** (Claude or Gemini)
-  - Claude: [Anthropic](https://console.anthropic.com)
-  - Gemini: [Google AI Studio](https://makersuite.google.com)
+ - Claude: [Anthropic](https://console.anthropic.com)
+ - Gemini: [Google AI Studio](https://makersuite.google.com)
 
 ---
 
@@ -99,7 +99,7 @@ GMAIL_REDIRECT_URI=http://localhost:3000/callback
 
 **CAT Mail supports 4 AI backends. Pick one:**
 
-#### Option A: Claude (Anthropic) ⭐ Recommended
+#### Option A: Claude (Anthropic) Recommended
 
 1. Get API key from [Anthropic Console](https://console.anthropic.com)
 2. Add to `.env`:
@@ -109,7 +109,7 @@ AI_SERVICE=claude
 ANTHROPIC_API_KEY=sk-ant-your-key-here
 ```
 
-#### Option B: Gemini (Google) 💰 Cheapest
+#### Option B: Gemini (Google) Cheapest
 
 1. Get API key from [Google AI Studio](https://makersuite.google.com)
 2. Add to `.env`:
@@ -119,7 +119,7 @@ AI_SERVICE=gemini
 GEMINI_API_KEY=your-gemini-key-here
 ```
 
-#### Option C: OpenAI (GPT-4) 💡 Most Powerful
+#### Option C: OpenAI (GPT-4) Most Powerful
 
 1. Get API key from [OpenAI Platform](https://platform.openai.com/account/api-keys)
 2. Add payment method to account
@@ -130,7 +130,7 @@ AI_SERVICE=openai
 OPENAI_API_KEY=sk-proj-your-key-here
 ```
 
-#### Option D: Grok (xAI) ⚡ Fast & Witty
+#### Option D: Grok (xAI) Fast & Witty
 
 1. Get API key from [xAI Console](https://console.x.ai)
 2. Add to `.env`:
@@ -146,7 +146,7 @@ GROK_API_KEY=your-grok-key-here
 
 ```env
 # Logging level
-LOG_LEVEL=INFO    # DEBUG, INFO (default), WARN, ERROR
+LOG_LEVEL=INFO # DEBUG, INFO (default), WARN, ERROR
 
 # Gmail settings
 TARGET_EMAIL=your@email.com
@@ -186,16 +186,16 @@ chmod 600 .env
 ```
 
 **Windows:**
-- Right-click `.env` → Properties → Security
+- Right-click `.env` -> Properties -> Security
 - Remove all users except yourself
 - Give yourself Full Control
 
 ### Never Share Your `.env` File
 
-- ❌ Don't commit to git
-- ❌ Don't upload to cloud
-- ❌ Don't share publicly
-- ✅ Keep it local and secure
+- Don't commit to git
+- Don't upload to cloud
+- Don't share publicly
+- [OK] Keep it local and secure
 
 ---
 
@@ -308,7 +308,7 @@ See [DEPLOYMENT_WINDOWS.md](DEPLOYMENT_WINDOWS.md) - Task Scheduler setup
 
 ## Understanding Your Agent
 
-### What It Does ✅
+### What It Does [OK]
 
 - Understands natural language
 - Searches your Gmail
@@ -318,7 +318,7 @@ See [DEPLOYMENT_WINDOWS.md](DEPLOYMENT_WINDOWS.md) - Task Scheduler setup
 - Blocks senders (locally)
 - Learns your preferences
 
-### What It Doesn't Do ❌
+### What It Doesn't Do 
 
 - Store your emails
 - Collect your contacts
@@ -332,14 +332,14 @@ See [DEPLOYMENT_WINDOWS.md](DEPLOYMENT_WINDOWS.md) - Task Scheduler setup
 ## Privacy Promise
 
 ```
-🔒 Your privacy is protected by default:
+ Your privacy is protected by default:
 
-✅ All email processing happens in memory
-✅ Nothing is saved to disk
-✅ No data is shared with third parties
-✅ No tracking or profiling
-✅ Audit logs never contain email content
-✅ NZ Privacy Act 2020 compliant
+[OK] All email processing happens in memory
+[OK] Nothing is saved to disk
+[OK] No data is shared with third parties
+[OK] No tracking or profiling
+[OK] Audit logs never contain email content
+[OK] NZ Privacy Act 2020 compliant
 ```
 
 ---
@@ -392,15 +392,15 @@ A: Yes! Set up Systemd (Linux) or Task Scheduler (Windows) for auto-start.
 
 ## What's Next?
 
-1. ✅ Install and configure
-2. ✅ Try your first command
-3. ✅ Read [README.md](README.md)
-4. ✅ Review [PRIVACY_NOTICE.md](PRIVACY_NOTICE.md)
-5. ✅ Set up auto-start (optional)
-6. ✅ Enjoy hands-free email management!
+1. [OK] Install and configure
+2. [OK] Try your first command
+3. [OK] Read [README.md](README.md)
+4. [OK] Review [PRIVACY_NOTICE.md](PRIVACY_NOTICE.md)
+5. [OK] Set up auto-start (optional)
+6. [OK] Enjoy hands-free email management!
 
 ---
 
-**Ready to streamline your email?** Start with your first command above! 🚀
+**Ready to streamline your email?** Start with your first command above! 
 
-*Privacy is a right. Your email stays yours.* 🔒
+*Privacy is a right. Your email stays yours.* 

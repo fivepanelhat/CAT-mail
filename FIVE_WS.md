@@ -33,24 +33,24 @@ An **AI-powered, privacy-first email management assistant** that processes your 
 
 | Capability | Example | Data Saved? |
 |-----------|---------|------------|
-| **Search** | "Find emails from 2024" | ❌ No |
-| **Delete** | "Remove spam emails" | ❌ No |
-| **Send** | "Reply with this message" | ❌ No |
-| **Classify** | "Mark as spam" | ❌ No |
-| **Organize** | "Archive old emails" | ❌ No |
-| **Remember Block** | "Block this sender" | ✅ Optional local storage only |
-| **Remember Template** | "Save this reply" | ✅ Optional local storage only |
+| **Search** | "Find emails from 2024" | No |
+| **Delete** | "Remove spam emails" | No |
+| **Send** | "Reply with this message" | No |
+| **Classify** | "Mark as spam" | No |
+| **Organize** | "Archive old emails" | No |
+| **Remember Block** | "Block this sender" | [OK] Optional local storage only |
+| **Remember Template** | "Save this reply" | [OK] Optional local storage only |
 
 ### What It Doesn't Do
 
-- ❌ Store emails
-- ❌ Build contact lists
-- ❌ Profile your behavior
-- ❌ Share data with third parties
-- ❌ Create backups
-- ❌ Track usage patterns
-- ❌ Monetize your data
-- ❌ Export your information
+- Store emails
+- Build contact lists
+- Profile your behavior
+- Share data with third parties
+- Create backups
+- Track usage patterns
+- Monetize your data
+- Export your information
 
 ### What It Needs
 
@@ -73,25 +73,25 @@ An **AI-powered, privacy-first email management assistant** that processes your 
 ### Timeline of Typical Operations
 
 ```
-T=0.0s  User Issue Command
-        "Delete all spam from last week"
-        ↓
-T=0.2s  Agent Analyzes Intent via Claude
-        Identifies: delete operation + spam + time range
-        ↓
-T=0.4s  Search Gmail for Matching Emails
-        Query: is:spam before:2026-07-07
-        ↓
-T=0.6s  Classify Results
-        Verify each email is actually spam
-        ↓
-T=0.8s  Execute Deletion
-        Remove matching emails
-        ↓
-T=1.0s  Return Summary
-        "Deleted 47 spam emails"
-        ↓
-T=1.1s  [All memory cleared - nothing retained]
+T=0.0s User Issue Command
+ "Delete all spam from last week"
+ 
+T=0.2s Agent Analyzes Intent via Claude
+ Identifies: delete operation + spam + time range
+ 
+T=0.4s Search Gmail for Matching Emails
+ Query: is:spam before:2026-07-07
+ 
+T=0.6s Classify Results
+ Verify each email is actually spam
+ 
+T=0.8s Execute Deletion
+ Remove matching emails
+ 
+T=1.0s Return Summary
+ "Deleted 47 spam emails"
+ 
+T=1.1s [All memory cleared - nothing retained]
 ```
 
 ### Lifecycle Events
@@ -115,13 +115,13 @@ T=1.1s  [All memory cleared - nothing retained]
 
 ```
 Traditional Email Client:
-Email Received → [Stored Forever] → 10 Years Later → Still There
+Email Received -> [Stored Forever] -> 10 Years Later -> Still There
 
 CAT Agent:
-Email Processed → [In Memory] → Session Ends → [Permanently Gone]
+Email Processed -> [In Memory] -> Session Ends -> [Permanently Gone]
 
 Optional Block List:
-Sender Added → [Stored Locally] → You Delete → [Gone]
+Sender Added -> [Stored Locally] -> You Delete -> [Gone]
 ```
 
 ---
@@ -131,25 +131,25 @@ Sender Added → [Stored Locally] → You Delete → [Gone]
 ### Physical/Network Locations
 
 ```
-┌─────────────────────────────────────────────────┐
-│           Your Computer                         │
-│  ┌───────────────────────────────────────┐     │
-│  │  CAT Email Agent (Running Locally)    │     │
-│  │  - Processes commands in-memory       │     │
-│  │  - Stores only optional preferences   │     │
-│  │  - No internet calls for data sharing │     │
-│  └───────────────────────────────────────┘     │
-└─────────────────────────────────────────────────┘
-           ↓ (OAuth connection only)
-     ┌──────────────────┐
-     │   Gmail API      │
-     │ (Your account)   │
-     └──────────────────┘
-           ↓ (Language processing only)
-     ┌──────────────────┐
-     │  Anthropic API   │
-     │  (Claude model)  │
-     └──────────────────┘
+-------------------------------------------------
+| Your Computer |
+| --------------------------------------- |
+| | CAT Email Agent (Running Locally) | |
+| | - Processes commands in-memory | |
+| | - Stores only optional preferences | |
+| | - No internet calls for data sharing | |
+| `--------------------------------------- |
+`-------------------------------------------------
+ (OAuth connection only)
+ ------------------
+ | Gmail API |
+ | (Your account) |
+ `------------------
+ (Language processing only)
+ ------------------
+ | Anthropic API |
+ | (Claude model) |
+ `------------------
 ```
 
 ### Data Storage Locations
@@ -157,21 +157,21 @@ Sender Added → [Stored Locally] → You Delete → [Gone]
 **What's Stored Locally on Your Device:**
 ```
 cat-mail/
-├── .env (Your API keys - never shared)
-├── config.json (Optional: block list, reply templates)
-├── logs/ (Security audit logs only)
-└── node_modules/ (Dependencies)
+|-- .env (Your API keys - never shared)
+|-- config.json (Optional: block list, reply templates)
+|-- logs/ (Security audit logs only)
+`-- node_modules/ (Dependencies)
 ```
 
 **What's NOT Stored Anywhere:**
 ```
-❌ Email backups
-❌ Contact databases
-❌ User profiles
-❌ Behavioral analytics
-❌ Transaction logs
-❌ IP addresses
-❌ Device fingerprints
+ Email backups
+ Contact databases
+ User profiles
+ Behavioral analytics
+ Transaction logs
+ IP addresses
+ Device fingerprints
 ```
 
 ### Geographic Considerations
@@ -188,44 +188,44 @@ cat-mail/
 ### Why We Built It This Way
 
 1. **Privacy is a Right**
-   - Email is intimate and personal
-   - You deserve tools that respect that
+ - Email is intimate and personal
+ - You deserve tools that respect that
 
 2. **NZ Privacy Act 2020**
-   - Fully compliant with local privacy laws
-   - Privacy Principles embedded in design
-   - User control over all data
+ - Fully compliant with local privacy laws
+ - Privacy Principles embedded in design
+ - User control over all data
 
 3. **Data Minimization**
-   - Less data = fewer risks
-   - In-memory processing = instant deletion
-   - No retention = no breach exposure
+ - Less data = fewer risks
+ - In-memory processing = instant deletion
+ - No retention = no breach exposure
 
 4. **Trust Through Transparency**
-   - Open-source code you can audit
-   - Clear documentation of capabilities
-   - No hidden data collection
+ - Open-source code you can audit
+ - Clear documentation of capabilities
+ - No hidden data collection
 
 5. **CAT Compliance**
-   - Coastal Alpine Tech standards
-   - Security-first architecture
-   - User-controlled operations
+ - Coastal Alpine Tech standards
+ - Security-first architecture
+ - User-controlled operations
 
 ### Why Not Save Data?
 
 ```
-Saved Data → Liability
-           → Breach Risk
-           → Privacy Violation
-           → Regulatory Risk
-           → User Distrust
+Saved Data -> Liability
+ -> Breach Risk
+ -> Privacy Violation
+ -> Regulatory Risk
+ -> User Distrust
 
 CAT Philosophy:
-No Storage → No Liability
-           → No Risk
-           → No Violations
-           → No Regulations
-           → Full Trust
+No Storage -> No Liability
+ -> No Risk
+ -> No Violations
+ -> No Regulations
+ -> Full Trust
 ```
 
 ### Why Claude?
@@ -275,10 +275,10 @@ npm run anthropic-audit
 ### Code Transparency
 
 Every privacy claim is backed by code:
-- ❌ Email storage: Search `saveEmail` in codebase - returns 0 results
-- ❌ Contact scraping: Search `contacts` in Gmail adapter - no contact collection
-- ❌ Data export: Search `export` in agent - returns 0 results
-- ✅ Memory clearing: Search `clearMemory` - invoked on session end
+- Email storage: Search `saveEmail` in codebase - returns 0 results
+- Contact scraping: Search `contacts` in Gmail adapter - no contact collection
+- Data export: Search `export` in agent - returns 0 results
+- [OK] Memory clearing: Search `clearMemory` - invoked on session end
 
 ### NZ Privacy Compliance Proof
 
@@ -297,11 +297,11 @@ Every privacy claim is backed by code:
 ### The Complete Picture
 
 ```
-WHO:  Individual users who value privacy
+WHO: Individual users who value privacy
 WHAT: Privacy-first AI email management agent
 WHEN: Real-time processing, immediate deletion
 WHERE: Your device + Gmail + Claude (text only)
-WHY:  NZ Privacy Act compliance + user rights
+WHY: NZ Privacy Act compliance + user rights
 
 Result: Complete email automation without sacrificing privacy
 ```
@@ -309,12 +309,12 @@ Result: Complete email automation without sacrificing privacy
 ### Your Control
 
 You control:
-- ✅ What commands you give
-- ✅ What API credentials are used
-- ✅ Where agent runs (your device)
-- ✅ What's stored locally (optional prefs)
-- ✅ When to revoke Gmail access
-- ✅ Whether to use the agent at all
+- [OK] What commands you give
+- [OK] What API credentials are used
+- [OK] Where agent runs (your device)
+- [OK] What's stored locally (optional prefs)
+- [OK] When to revoke Gmail access
+- [OK] Whether to use the agent at all
 
 ---
 

@@ -1,56 +1,56 @@
 {
-  "name": "@coastalalpine/cat-mail",
-  "version": "1.0.0",
-  "description": "Privacy-first AI email agent - Coastal Alpine Tech Email Management System. NZ Privacy Act compliant, in-memory processing, zero data retention. Works with Claude AI or Google Gemini.",
-  "type": "module",
-  "main": "dist/index.js",
-  "homepage": "https://cat-mail.vercel.app",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/coastalalpine/cat-mail.git"
-  },
-  "scripts": {
-    "dev": "node --loader ts-node/esm src/index.ts",
-    "build": "tsc",
-    "start": "node dist/index.js",
-    "test": "vitest",
-    "lint": "eslint src --ext .ts",
-    "typecheck": "tsc --noEmit",
-    "security-check": "npm audit",
-    "deploy": "vercel --prod"
-  },
-  "keywords": [
-    "email",
-    "ai-agent",
-    "inbox-management",
-    "spam-filter",
-    "automation",
-    "privacy",
-    "claude",
-    "gemini",
-    "open-source",
-    "nz-privacy-act"
-  ],
-  "author": "Coastal Alpine Tech",
-  "license": "MIT",
-  "engines": {
-    "node": ">=18.0.0",
-    "npm": ">=8.0.0"
-  },
-  "dependencies": {
-    "dotenv": "^16.0.3",
-    "googleapis": "^131.0.0",
-    "anthropic": "*",
-    "openai": "^4.52.0"
-  },
-  "devDependencies": {
-    "@types/node": "^20.0.0",
-    "typescript": "^5.0.0",
-    "ts-node": "^10.9.0",
-    "eslint": "^8.0.0",
-    "@typescript-eslint/eslint-plugin": "^6.0.0",
-    "@typescript-eslint/parser": "^6.0.0",
-    "vitest": "^1.0.0",
-    "@types/jest": "^29.0.0"
-  }
+ "name": "@coastalalpine/cat-mail",
+ "version": "1.0.0",
+ "description": "Privacy-first AI email agent - Coastal Alpine Tech Email Management System. NZ Privacy Act compliant, in-memory processing, zero data retention. Works with Claude AI or Google Gemini.",
+ "type": "module",
+ "main": "dist/index.js",
+ "homepage": "https://cat-mail.vercel.app",
+ "repository": {
+ "type": "git",
+ "url": "https://github.com/coastalalpine/cat-mail.git"
+ },
+ "scripts": {
+ "dev": "node --loader ts-node/esm src/index.ts",
+ "build": "tsc",
+ "start": "node dist/index.js",
+ "test": "vitest",
+ "lint": "eslint src --ext .ts",
+ "typecheck": "tsc --noEmit",
+ "security-check": "npm audit",
+ "deploy": "vercel --prod"
+ },
+ "keywords": [
+ "email",
+ "ai-agent",
+ "inbox-management",
+ "spam-filter",
+ "automation",
+ "privacy",
+ "claude",
+ "gemini",
+ "open-source",
+ "nz-privacy-act"
+ ],
+ "author": "Coastal Alpine Tech",
+ "license": "MIT",
+ "engines": {
+ "node": ">=18.0.0",
+ "npm": ">=8.0.0"
+ },
+ "dependencies": {
+ "dotenv": "^16.0.3",
+ "googleapis": "^131.0.0",
+ "anthropic": "*",
+ "openai": "^4.52.0"
+ },
+ "devDependencies": {
+ "@types/node": "^20.0.0",
+ "typescript": "^5.0.0",
+ "ts-node": "^10.9.0",
+ "eslint": "^8.0.0",
+ "@typescript-eslint/eslint-plugin": "^6.0.0",
+ "@typescript-eslint/parser": "^6.0.0",
+ "vitest": "^1.0.0",
+ "@types/jest": "^29.0.0"
+ }
 }
