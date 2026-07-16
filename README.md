@@ -16,6 +16,40 @@
 Anti-hallucination policy: [`.github/agent-fleet/anti-hallucination.md`](./.github/agent-fleet/anti-hallucination.md) | Congruence: [`CAT_CONGRUENCE.md`](./CAT_CONGRUENCE.md)
 <!-- END CAT_CONGRUENCE_SNIPPET -->
 
+<!-- BEGIN PROBLEMS_SOLUTIONS_ECONOMY -->
+## Problems we are solving
+
+**CAT-mail** is a privacy-first email agent utility (supporting tool - not the agritech beachhead).
+
+1. **Privacy extraction** - Mainstream email AI retains and monetises inbox patterns.
+2. **Security concentration** - Centralised forever-storage is a high-value target.
+3. **Manual overload** - Spam, triage, and repetitive draft work burn founder time.
+4. **Weak deletion control** - Sensitive mail is hard to truly control once third parties process it.
+
+## Solution we have built
+
+| Built capability | What it does |
+| :--- | :--- |
+| **Local-first agent design** | Privacy Act 2020-oriented controls |
+| **Spam / triage assist** | Draft and classify under human send authority |
+| **Zero data-retention posture** | Product goal: process without permanent third-party mail vault |
+| **HITL send** | Humans still send - agents prepare |
+
+Parked relative to **Byte Size Kai** and **Front_Line_Whanau** sales narratives; still useful founder infrastructure.
+
+### Local (Taranaki) and national (Aotearoa) economic benefits
+
+| Lever | Benefit |
+| :--- | :--- |
+| **Regional R&D HQ** | Product design and IP stay in New Plymouth / Taranaki - not only Auckland/offshore SaaS |
+| **Primary-sector productivity** | On-farm and rural tools aim to cut waste, protect consents, and support export competitiveness |
+| **Skilled employment pathways** | Edge install, field support, agritech ops, software, compliance, and cultural advisory roles as pilots scale |
+| **Data sovereignty** | Te Mana Raraunga-aligned local custody keeps high-value operational data onshore |
+| **HITL jobs quality** | Agents **inform / draft / prepare / monitor / remind**; humans **advise / sign / file / send / pay** - augment people, do not fake full autonomy |
+
+**Stage honesty (pre-seed):** Impact today is founder R&D, near-term contractors, and EDA/partner leverage. Permanent multi-region payroll follows paid pilots and revenue - we do not invent headcount claims.
+<!-- END PROBLEMS_SOLUTIONS_ECONOMY -->
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)](https://github.com/fivepanelhat/CAT-mail/releases/tag/v1.1.0)
 [![Node.js](https://img.shields.io/badge/Node.js-18%2B-339933?logo=node.js&logoColor=white)](https://nodejs.org)
@@ -44,47 +78,6 @@ Anti-hallucination policy: [`.github/agent-fleet/anti-hallucination.md`](./.gith
 
 ---
 
-## The Problem We're Solving
-
-### Traditional Email Management is Broken
-
-**Privacy Nightmare:**
-- S Your email client stores **everything** - forever
-- Companies track your email patterns for profit
-- - Third-party services get access to your inbox
-- No control over what's collected or retained
-- Your data gets sold or "anonymized" for research
-
-**Security Risk:**
-- Centralized storage = centralized target for hackers
-- Weak password management puts you at risk
-- Spam and phishing emails flood your inbox
-- -' No way to permanently delete sensitive emails
-- Can't control who sees your communications
-
-**Inefficiency:**
-- Manual spam filtering is exhausting
-- Repetitive email tasks waste hours
-- No natural language commands
-- Complex folder structures and rules
-- No automation without coding
-
-### [OK] Our Solution
-
-**CAT Email Agent solves these problems:**
-
- | Problem | Solution |
- | --------- | ---------- |
- | **Privacy nightmare** | Zero data retention - in-memory only |
- | **Data tracking** | No profiling, no behavioral analysis |
- | **Third-party sharing** | Blocked by design - never shared |
- | **No control** | ' You control everything via OAuth |
- | **Security risk** | [OK] Fully encrypted, validated inputs |
- | **Manual spam** | - AI-powered automatic classification |
- | **Repetitive tasks** | Natural language automation |
- | **Complex setup** | 5-minute installation |
- | **No transparency** | "- Open source, fully auditable |
- | **No compliance** | NZ Privacy Act 2020 compliant |
 
 ---
 
