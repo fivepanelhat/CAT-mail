@@ -1,22 +1,22 @@
 import { OpenAI } from 'openai';
 
 const client = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+ apiKey: process.env.OPENAI_API_KEY,
 });
 
 interface Message {
-  role: 'user' | 'assistant';
-  content: string;
+ role: 'user' | 'assistant';
+ content: string;
 }
 
 interface EmailOperation {
-  operation: string;
-  target?: string;
-  details?: Record<string, unknown>;
+ operation: string;
+ target?: string;
+ details?: Record<string, unknown>;
 }
 
 export async function runOpenAIAgent(userMessage: string, conversationHistory: Message[] = []): Promise<string> {
-  const systemPrompt = `You are CAT Email Agent - a privacy-first email management assistant.
+ const systemPrompt = `You are CAT Email Agent - a privacy-first email management assistant.
 
 You help users manage their Gmail inbox using natural language commands.
 
@@ -40,69 +40,69 @@ PRIVACY RULES (CRITICAL):
 RESPONSE FORMAT:
 Respond with JSON containing:
 {
-  "operation": "search|delete|archive|spam|send|block|remember",
-  "target": "email address or search query",
-  "details": { "additional": "parameters" },
-  "explanation": "What we're doing and privacy guarantees"
+ "operation": "search|delete|archive|spam|send|block|remember",
+ "target": "email address or search query",
+ "details": { "additional": "parameters" },
+ "explanation": "What we're doing and privacy guarantees"
 }
 
 Ensure every response includes privacy assurance.`;
 
-  const messages: Message[] = [
-    ...conversationHistory,
-    { role: 'user', content: userMessage }
-  ];
+ const messages: Message[] = [
+ ...conversationHistory,
+ { role: 'user', content: userMessage }
+ ];
 
-  try {
-    const response = await client.chat.completions.create({
-      model: 'gpt-4-turbo',
-      messages: messages.map(m => ({
-        role: m.role,
-        content: m.content,
-      })),
-      system: systemPrompt,
-      temperature: 0.7,
-      max_tokens: 2000,
-    });
+ try {
+ const response = await client.chat.completions.create({
+ model: 'gpt-4-turbo',
+ messages: messages.map(m => ({
+ role: m.role,
+ content: m.content,
+ })),
+ system: systemPrompt,
+ temperature: 0.7,
+ max_tokens: 2000,
+ });
 
-    const assistantMessage = response.choices[0]?.message?.content || '';
+ const assistantMessage = response.choices[0]?.message?.content || '';
 
-    // Clean up response - remove markdown code blocks if present
-    const cleanedMessage = assistantMessage
-      .replace(/```json\n?/g, '')
-      .replace(/```\n?/g, '')
-      .trim();
+ // Clean up response - remove markdown code blocks if present
+ const cleanedMessage = assistantMessage
+ .replace(/```json\n?/g, '')
+ .replace(/```\n?/g, '')
+ .trim();
 
-    return cleanedMessage;
-  } catch (error) {
-    if (error instanceof Error) {
-      throw new Error(`OpenAI API error: ${error.message}`);
-    }
-    throw error;
-  }
+ return cleanedMessage;
+ } catch (error) {
+ if (error instanceof Error) {
+ throw new Error(`OpenAI API error: ${error.message}`);
+ }
+ throw error;
+ }
 }
 
 export function parseOpenAIResponse(response: string): EmailOperation {
-  try {
-    // Try to extract JSON from response
-    const jsonMatch = response.match(/\{[\s\S]*\}/);
-    if (!jsonMatch) {
-      return {
-        operation: 'search',
-        details: { query: response }
-      };
-    }
-    return JSON.parse(jsonMatch[0]);
-  } catch {
-    return {
-      operation: 'search',
-      details: { query: response }
-    };
-  }
+ try {
+ // Try to extract JSON from response
+ const jsonMatch = response.match(/\{[\s\S]*\}/);
+ if (!jsonMatch) {
+ return {
+ operation: 'search',
+ details: { query: response }
+ };
+ }
+ return JSON.parse(jsonMatch[0]);
+ } catch {
+ return {
+ operation: 'search',
+ details: { query: response }
+ };
+ }
 }
 
 export function getOpenAISystemPrompt(): string {
-  return `You are CAT Email Agent - a privacy-first email management assistant powered by OpenAI.
+ return `You are CAT Email Agent - a privacy-first email management assistant powered by OpenAI.
 
 Privacy is your highest priority. You MUST:
 - Never store email content

@@ -4,7 +4,7 @@
 
 ---
 
-## 📊 Memory Usage Overview
+## Memory Usage Overview
 
 ### Baseline Memory Consumption
 
@@ -29,21 +29,21 @@
 
 ```
 Operation Completes
-    ↓ (~200 MB peak)
+ (~200 MB peak)
 Auto-Cleanup Triggered
-    ↓ (~150 MB transitional)
+ (~150 MB transitional)
 Garbage Collection
-    ↓ (~100 MB)
+ (~100 MB)
 Final Cleanup
-    ↓ (~80 MB baseline)
+ (~80 MB baseline)
 ```
 
-**Time to Baseline**: ~2-5 seconds after operation  
-**Memory Leak**: None detected ✅
+**Time to Baseline**: ~2-5 seconds after operation 
+**Memory Leak**: None detected [OK]
 
 ---
 
-## 🔍 Profiling Instructions
+## Profiling Instructions
 
 ### Method 1: Node.js Built-in Profiler
 
@@ -90,8 +90,8 @@ npm install -g clinic
 clinic doctor -- node dist/index.js "test command"
 
 # Run different analyses
-clinic flame -- node dist/index.js "test command"  # Flame graph
-clinic bubbleprof -- node dist/index.js "test"     # Bubble profile
+clinic flame -- node dist/index.js "test command" # Flame graph
+clinic bubbleprof -- node dist/index.js "test" # Bubble profile
 ```
 
 ### Method 4: Platform-Specific Monitoring
@@ -104,8 +104,8 @@ watch -n 1 'ps aux | grep node'
 
 # Memory trend over time
 for i in {1..10}; do
-  ps aux | grep node | grep -v grep
-  sleep 2
+ ps aux | grep node | grep -v grep
+ sleep 2
 done
 
 # Detailed memory stats
@@ -117,15 +117,15 @@ pmap -x $(pgrep -f "node dist")
 ```powershell
 # Real-time monitoring
 while ($true) {
-    Clear-Host
-    Get-Process | Where-Object {$_.ProcessName -eq "node"} | 
-      Select-Object Name, @{Name="Memory (MB)";Expression={[math]::Round($_.WorkingSet64/1MB, 2)}}
-    Start-Sleep -Seconds 1
+ Clear-Host
+ Get-Process | Where-Object {$_.ProcessName -eq "node"} | 
+ Select-Object Name, @{Name="Memory (MB)";Expression={[math]::Round($_.WorkingSet64/1MB, 2)}}
+ Start-Sleep -Seconds 1
 }
 
 # Export to CSV
 Get-Process | Where-Object {$_.ProcessName -eq "node"} | 
-  Export-Csv -Path memory-log.csv -Append
+ Export-Csv -Path memory-log.csv -Append
 ```
 
 ### Method 5: Custom Memory Profiling Script
@@ -136,36 +136,36 @@ const { performance } = require('perf_hooks');
 const { EmailAgent } = require('../dist/agent/email-agent');
 
 async function profileMemory() {
-  const initialMemory = process.memoryUsage();
-  console.log('Initial Memory:', {
-    heapUsed: Math.round(initialMemory.heapUsed / 1024 / 1024) + ' MB',
-    heapTotal: Math.round(initialMemory.heapTotal / 1024 / 1024) + ' MB',
-    external: Math.round(initialMemory.external / 1024 / 1024) + ' MB',
-  });
+ const initialMemory = process.memoryUsage();
+ console.log('Initial Memory:', {
+ heapUsed: Math.round(initialMemory.heapUsed / 1024 / 1024) + ' MB',
+ heapTotal: Math.round(initialMemory.heapTotal / 1024 / 1024) + ' MB',
+ external: Math.round(initialMemory.external / 1024 / 1024) + ' MB',
+ });
 
-  // Simulate operations
-  for (let i = 0; i < 10; i++) {
-    console.log(`\nOperation ${i + 1}:`);
-    const before = process.memoryUsage();
-    
-    // Simulate work
-    const data = new Array(10000).fill('test email content');
-    
-    const after = process.memoryUsage();
-    console.log('Memory Delta:', {
-      heapUsed: Math.round((after.heapUsed - before.heapUsed) / 1024 / 1024) + ' MB',
-    });
-  }
+ // Simulate operations
+ for (let i = 0; i < 10; i++) {
+ console.log(`\nOperation ${i + 1}:`);
+ const before = process.memoryUsage();
+ 
+ // Simulate work
+ const data = new Array(10000).fill('test email content');
+ 
+ const after = process.memoryUsage();
+ console.log('Memory Delta:', {
+ heapUsed: Math.round((after.heapUsed - before.heapUsed) / 1024 / 1024) + ' MB',
+ });
+ }
 
-  // Force garbage collection (requires --expose-gc)
-  if (global.gc) {
-    global.gc();
-    const finalMemory = process.memoryUsage();
-    console.log('\nAfter GC:', {
-      heapUsed: Math.round(finalMemory.heapUsed / 1024 / 1024) + ' MB',
-      heapTotal: Math.round(finalMemory.heapTotal / 1024 / 1024) + ' MB',
-    });
-  }
+ // Force garbage collection (requires --expose-gc)
+ if (global.gc) {
+ global.gc();
+ const finalMemory = process.memoryUsage();
+ console.log('\nAfter GC:', {
+ heapUsed: Math.round(finalMemory.heapUsed / 1024 / 1024) + ' MB',
+ heapTotal: Math.round(finalMemory.heapTotal / 1024 / 1024) + ' MB',
+ });
+ }
 }
 
 profileMemory().catch(console.error);
@@ -182,7 +182,7 @@ node --expose-gc scripts/profile-memory.js
 
 ---
 
-## 📈 Performance Benchmarks
+## Performance Benchmarks
 
 ### Operation Performance
 
@@ -198,22 +198,22 @@ node --expose-gc scripts/profile-memory.js
 
 ```
 Email Processing Rate:
-- Small emails (< 10 KB):  100+ emails/min
+- Small emails (< 10 KB): 100+ emails/min
 - Medium emails (10-100 KB): 50-80 emails/min
-- Large emails (100+ KB):  10-20 emails/min
+- Large emails (100+ KB): 10-20 emails/min
 ```
 
 ### Latency
 
 ```
-P50 (Median):        200 ms
+P50 (Median): 200 ms
 P95 (95th percentile): 800 ms
 P99 (99th percentile): 2 seconds
 ```
 
 ---
 
-## 🔧 Optimization Tips
+## Optimization Tips
 
 ### 1. Batch Operations
 
@@ -233,13 +233,13 @@ npm run dev "delete emails 1, 2, 3"
 
 ```typescript
 // In email-tools.ts - limit results per search
-const maxResults = 50;  // Don't load 1000+ emails at once
+const maxResults = 50; // Don't load 1000+ emails at once
 
 // For operations, batch in groups of 50
 const emailIds = getAllEmails();
 for (let i = 0; i < emailIds.length; i += 50) {
-  const batch = emailIds.slice(i, i + 50);
-  await processBatch(batch);
+ const batch = emailIds.slice(i, i + 50);
+ await processBatch(batch);
 }
 ```
 
@@ -277,16 +277,16 @@ import * as everything from './modules';
 
 // Good: Load only what's needed
 async function processCommand(command) {
-  if (command.includes('delete')) {
-    const { DeleteHandler } = await import('./handlers/delete');
-    // Use handler
-  }
+ if (command.includes('delete')) {
+ const { DeleteHandler } = await import('./handlers/delete');
+ // Use handler
+ }
 }
 ```
 
 ---
 
-## 🚨 Memory Leak Detection
+## Memory Leak Detection
 
 ### Identify Memory Leaks
 
@@ -296,8 +296,8 @@ async function processCommand(command) {
 
 # Example (Linux):
 for i in {1..60}; do
-  ps aux | grep node | grep -v grep | awk '{print $6}'
-  sleep 2
+ ps aux | grep node | grep -v grep | awk '{print $6}'
+ sleep 2
 done
 ```
 
@@ -319,25 +319,25 @@ node --inspect dist/index.js &
 ### Common Leak Patterns
 
 ```typescript
-// ❌ BAD: Global reference persists
+// BAD: Global reference persists
 let emails = [];
 function process() {
-  emails.push(...newEmails);  // Grows forever
+ emails.push(...newEmails); // Grows forever
 }
 
-// ✅ GOOD: Local scope, gets garbage collected
+// [OK] GOOD: Local scope, gets garbage collected
 function process() {
-  let emails = [];
-  emails.push(...newEmails);
-  return emails;
-  // 'emails' freed after function
+ let emails = [];
+ emails.push(...newEmails);
+ return emails;
+ // 'emails' freed after function
 }
 
-// ❌ BAD: Event listeners not removed
+// BAD: Event listeners not removed
 emitter.on('data', callback);
 // No removeListener call
 
-// ✅ GOOD: Listeners cleaned up
+// [OK] GOOD: Listeners cleaned up
 const handler = (data) => { /* ... */ };
 emitter.on('data', handler);
 // Later:
@@ -346,7 +346,7 @@ emitter.removeListener('data', handler);
 
 ---
 
-## 📊 Memory Profiling Results (Baseline)
+## Memory Profiling Results (Baseline)
 
 ### Test Configuration
 - **Platform**: Linux/Windows
@@ -358,24 +358,24 @@ emitter.removeListener('data', handler);
 ### Results
 
 ```
-Starting Memory:           85 MB
-Peak Memory (100 ops):    245 MB
-Final Memory:              88 MB
-Memory Growth:             3 MB (normal)
-Leak Detected:           ❌ No
+Starting Memory: 85 MB
+Peak Memory (100 ops): 245 MB
+Final Memory: 88 MB
+Memory Growth: 3 MB (normal)
+Leak Detected: No
 
-Garbage Collection Calls:  15
-GC Time:                  ~50 ms total
+Garbage Collection Calls: 15
+GC Time: ~50 ms total
 ```
 
 ### Conclusion
-✅ **No memory leaks detected**  
-✅ **Proper cleanup after operations**  
-✅ **Suitable for long-running processes**
+[OK] **No memory leaks detected** 
+[OK] **Proper cleanup after operations** 
+[OK] **Suitable for long-running processes**
 
 ---
 
-## 🎯 Memory Optimization Checklist
+## Memory Optimization Checklist
 
 - [ ] Baseline memory profiled (80-120 MB)
 - [ ] Operation memory profiled (150-250 MB peak)
@@ -390,24 +390,24 @@ GC Time:                  ~50 ms total
 
 ---
 
-## 📈 Scaling Considerations
+## Scaling Considerations
 
 ### Single Machine
 
 ```
-Operations/day:  1,000+
-Memory needed:   512 MB
-CPU usage:       Low (<5%)
-Storage:         100-500 MB
-Suitable:        ✅ Yes
+Operations/day: 1,000+
+Memory needed: 512 MB
+CPU usage: Low (<5%)
+Storage: 100-500 MB
+Suitable: [OK] Yes
 ```
 
 ### Multiple Users (Sequential)
 
 ```
 Each user: ~80-100 MB baseline
-5 users:   ~500 MB total
-Suitable:  ✅ Yes
+5 users: ~500 MB total
+Suitable: [OK] Yes
 ```
 
 ### Concurrent Operations
@@ -415,16 +415,16 @@ Suitable:  ✅ Yes
 ```
 Note: Agent is single-threaded
 Multiple concurrent operations:
-  → Queue in application
-  → Process sequentially
-  → Each operation: 150-250 MB
-  → No additional memory needed
-Suitable:  ✅ Yes
+ -> Queue in application
+ -> Process sequentially
+ -> Each operation: 150-250 MB
+ -> No additional memory needed
+Suitable: [OK] Yes
 ```
 
 ---
 
-## 🔗 Tools & Resources
+## Tools & Resources
 
 ### Linux Tools
 - `top` - Real-time process monitoring
@@ -452,7 +452,7 @@ Suitable:  ✅ Yes
 
 ---
 
-## 🆘 Troubleshooting Memory Issues
+## Troubleshooting Memory Issues
 
 ### High Memory Usage
 
@@ -460,20 +460,20 @@ Suitable:  ✅ Yes
 Baseline > 200 MB without operations?
 
 1. Check for memory leaks
-   → Run: node --inspect dist/index.js
-   → Take heap snapshots
-   → Compare consecutive snapshots
+ -> Run: node --inspect dist/index.js
+ -> Take heap snapshots
+ -> Compare consecutive snapshots
 
 2. Reduce email batch size
-   → Modify maxResults in email-tools.ts
-   → Process in smaller batches
+ -> Modify maxResults in email-tools.ts
+ -> Process in smaller batches
 
 3. Increase memory limit
-   → NODE_OPTIONS="--max-old-space-size=1024"
+ -> NODE_OPTIONS="--max-old-space-size=1024"
 
 4. Check for unclosed connections
-   → Verify Gmail adapter cleanup
-   → Check event listeners removed
+ -> Verify Gmail adapter cleanup
+ -> Check event listeners removed
 ```
 
 ### Frequent Garbage Collection
@@ -493,7 +493,7 @@ High CPU usage during GC?
 Error: JavaScript heap out of memory
 
 1. Increase memory limit immediately
-   → NODE_OPTIONS="--max-old-space-size=1024"
+ -> NODE_OPTIONS="--max-old-space-size=1024"
 
 2. Batch operations into smaller chunks
 3. Restart agent between large batches
@@ -503,7 +503,7 @@ Error: JavaScript heap out of memory
 
 ---
 
-## 📝 Monitoring Template
+## Monitoring Template
 
 **Create `scripts/monitor.sh` (Linux):**
 ```bash
@@ -516,7 +516,7 @@ echo ""
 # Process stats
 echo "Process Stats:"
 ps aux | grep "node dist" | grep -v grep | \
-  awk '{print "PID: " $2 "\nMemory: " $6/1024 " MB\nCPU: " $3 "%"}'
+ awk '{print "PID: " $2 "\nMemory: " $6/1024 " MB\nCPU: " $3 "%"}'
 
 echo ""
 echo "System Memory:"
@@ -536,7 +536,7 @@ chmod +x scripts/monitor.sh
 
 ---
 
-**Last Updated**: July 14, 2026  
-**Status**: ✅ Comprehensive Memory Profiling Guide  
+**Last Updated**: July 14, 2026 
+**Status**: [OK] Comprehensive Memory Profiling Guide 
 
 *Monitor early, optimize wisely.*

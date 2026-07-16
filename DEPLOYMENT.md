@@ -1,23 +1,23 @@
 # Coastal Alpine Tech Email Agent - Deployment Guide
 
-## 🎯 What Was Created
+## What Was Created
 
 A **privacy-first, NZ Privacy Act-compliant email management agent** with comprehensive security guardrails and zero data retention.
 
 ### Project: CAT Mail
-**Repository**: `C:\Users\Admin\cat-mail`  
-**Status**: ✅ Ready for configuration and testing  
-**Compliance**: NZ Privacy Act 2020, CAT Standards  
+**Repository**: `C:\Users\Admin\cat-mail` 
+**Status**: [OK] Ready for configuration and testing 
+**Compliance**: NZ Privacy Act 2020, CAT Standards 
 
 ---
 
-## 📦 Core Components
+## Core Components
 
 ### 1. **Email Agent** (`src/agent/`)
 - `email-agent.ts` - Claude-powered orchestrator with privacy enforcement
 - `tools/email-tools.ts` - 7 safe email operation tools
 
-### 2. **Security Layer** (`src/security/`) ⭐ NEW
+### 2. **Security Layer** (`src/security/`) NEW
 - `privacy-guardrails.ts` - Operation validation, blocks data export/scraping
 - `data-handler.ts` - In-memory processing with automatic cleanup
 - `preferences.ts` - Local-only user preferences (block lists, templates)
@@ -34,7 +34,7 @@ A **privacy-first, NZ Privacy Act-compliant email management agent** with compre
 
 ---
 
-## 📋 Documentation Created
+## Documentation Created
 
 | Document | Purpose |
 |----------|---------|
@@ -46,28 +46,28 @@ A **privacy-first, NZ Privacy Act-compliant email management agent** with compre
 
 ---
 
-## 🔒 Privacy Guarantees
+## Privacy Guarantees
 
 ### What's Guaranteed
-✅ **Zero Storage** - No emails saved  
-✅ **No Retention** - Data deleted after operations  
-✅ **No Scraping** - No contact collection  
-✅ **No Sharing** - Never sent to third parties  
-✅ **Local Only** - Optional preferences stored on your device  
-✅ **Audit Trail** - Operations logged (never content)  
-✅ **Transparent** - Open source, full disclosure  
+[OK] **Zero Storage** - No emails saved 
+[OK] **No Retention** - Data deleted after operations 
+[OK] **No Scraping** - No contact collection 
+[OK] **No Sharing** - Never sent to third parties 
+[OK] **Local Only** - Optional preferences stored on your device 
+[OK] **Audit Trail** - Operations logged (never content) 
+[OK] **Transparent** - Open source, full disclosure 
 
 ### What's Blocked
-❌ Email export  
-❌ Data backup  
-❌ Contact extraction  
-❌ Third-party forwarding  
-❌ Behavioral profiling  
-❌ Usage tracking  
+ Email export 
+ Data backup 
+ Contact extraction 
+ Third-party forwarding 
+ Behavioral profiling 
+ Usage tracking 
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 ```bash
@@ -108,7 +108,7 @@ npm run dev "list my unread emails"
 
 ---
 
-## 🛠️ Available Commands
+## Available Commands
 
 ### User Commands (Examples)
 ```bash
@@ -133,49 +133,49 @@ npm run dev "unsubscribe from newsletter@example.com"
 
 ### Development Commands
 ```bash
-npm run dev          # Run agent with command-line args
-npm run build        # TypeScript compilation
-npm run typecheck    # Type checking
-npm run lint         # Code linting
-npm run test         # Unit tests
+npm run dev # Run agent with command-line args
+npm run build # TypeScript compilation
+npm run typecheck # Type checking
+npm run lint # Code linting
+npm run test # Unit tests
 ```
 
 ---
 
-## 📊 Architecture Overview
+## Architecture Overview
 
 ```
 User Command
-    ↓
-[Privacy Validation] ← Blocks exports, scraping, sharing
-    ↓
-[Session Clear] ← Remove old data from memory
-    ↓
+ 
+[Privacy Validation] <- Blocks exports, scraping, sharing
+ 
+[Session Clear] <- Remove old data from memory
+ 
 Claude Agent (Conversation)
-    ↓
+ 
 Tool Router
-    ├→ Search Emails (→ RAM → Forgotten)
-    ├→ Delete Emails (→ RAM → Forgotten)
-    ├→ Send Email (→ RAM → Forgotten)
-    ├→ Archive (→ RAM → Forgotten)
-    ├→ Classify Spam (→ RAM → Forgotten)
-    ├→ Block Sender (→ Local Storage ONLY)
-    └→ Reply Template (→ Local Storage ONLY)
-    ↓
+ |-> Search Emails (-> RAM -> Forgotten)
+ |-> Delete Emails (-> RAM -> Forgotten)
+ |-> Send Email (-> RAM -> Forgotten)
+ |-> Archive (-> RAM -> Forgotten)
+ |-> Classify Spam (-> RAM -> Forgotten)
+ |-> Block Sender (-> Local Storage ONLY)
+ `-> Reply Template (-> Local Storage ONLY)
+ 
 Gmail API (Your Credentials)
-    ↓
+ 
 Your Gmail Account
-    ↓
+ 
 Agent Response
-    ↓
-[Data Cleanup] ← Auto-clear memory
-    ↓
+ 
+[Data Cleanup] <- Auto-clear memory
+ 
 User Sees Result
 ```
 
 ---
 
-## 🔐 Security Features
+## Security Features
 
 ### Built-in Protections
 
@@ -191,19 +191,19 @@ User Sees Result
 
 ### Audit Trail
 ```
-✓ Operation type (delete, search, send, etc.)
-✓ Timestamp
-✓ Success/failure status
-✓ Email count affected
-✗ Never: Email content
-✗ Never: Subject lines
-✗ Never: Sender names
-✗ Never: Email addresses
+[OK] Operation type (delete, search, send, etc.)
+[OK] Timestamp
+[OK] Success/failure status
+[OK] Email count affected
+[X] Never: Email content
+[X] Never: Subject lines
+[X] Never: Sender names
+[X] Never: Email addresses
 ```
 
 ---
 
-## 🏛️ Compliance
+## Compliance
 
 ### NZ Privacy Act 2020
 
@@ -227,7 +227,7 @@ All 13 Privacy Principles implemented:
 
 ---
 
-## 📝 Key Files
+## Key Files
 
 | File | Purpose |
 |------|---------|
@@ -241,7 +241,7 @@ All 13 Privacy Principles implemented:
 
 ---
 
-## ✅ Pre-Deployment Checklist
+## [OK] Pre-Deployment Checklist
 
 - [ ] Node.js 18+ installed
 - [ ] Gmail OAuth credentials configured
@@ -255,13 +255,13 @@ All 13 Privacy Principles implemented:
 
 ---
 
-## 🔧 Troubleshooting
+## Troubleshooting
 
 ### Gmail API Issues
 ```bash
 # Verify credentials
-echo $GMAIL_CLIENT_ID  # Should output your client ID
-echo $GMAIL_CLIENT_SECRET  # Should output your secret
+echo $GMAIL_CLIENT_ID # Should output your client ID
+echo $GMAIL_CLIENT_SECRET # Should output your secret
 ```
 
 ### Type Errors
@@ -277,7 +277,7 @@ npm run typecheck
 
 ---
 
-## 🎓 Learning Resources
+## Learning Resources
 
 1. **Privacy Model**: Read [PRIVACY_NOTICE.md](PRIVACY_NOTICE.md)
 2. **Framework**: Read [FIVE_WS.md](FIVE_WS.md)
@@ -286,7 +286,7 @@ npm run typecheck
 
 ---
 
-## 🚀 Next Steps
+## Next Steps
 
 1. **Install & Configure** - Complete the Getting Started section
 2. **Test Operations** - Try safe commands first
@@ -296,25 +296,25 @@ npm run typecheck
 
 ---
 
-## 📞 Support
+## Support
 
-**Questions about privacy?** Check [PRIVACY_NOTICE.md](PRIVACY_NOTICE.md)  
-**Questions about design?** Check [FIVE_WS.md](FIVE_WS.md)  
-**Questions about development?** Check [CLAUDE.md](CLAUDE.md)  
-**Questions about features?** Check [README.md](README.md)  
-
----
-
-## 📜 Compliance Contact
-
-**Email**: compliance@coastalalpine.tech  
-**Region**: New Zealand  
-**Standards**: NZ Privacy Act 2020, CAT Compliance  
+**Questions about privacy?** Check [PRIVACY_NOTICE.md](PRIVACY_NOTICE.md) 
+**Questions about design?** Check [FIVE_WS.md](FIVE_WS.md) 
+**Questions about development?** Check [CLAUDE.md](CLAUDE.md) 
+**Questions about features?** Check [README.md](README.md) 
 
 ---
 
-**Version**: 1.0  
-**Created**: July 14, 2026  
-**Status**: ✅ Production Ready  
+## Compliance Contact
+
+**Email**: compliance@coastalalpine.tech 
+**Region**: New Zealand 
+**Standards**: NZ Privacy Act 2020, CAT Compliance 
+
+---
+
+**Version**: 1.0 
+**Created**: July 14, 2026 
+**Status**: [OK] Production Ready 
 
 *Privacy is a right, not a feature.*

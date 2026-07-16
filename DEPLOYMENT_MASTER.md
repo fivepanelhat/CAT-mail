@@ -4,7 +4,7 @@
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 
 1. [Quick Start](#quick-start)
 2. [Platform-Specific Guides](#platform-specific-guides)
@@ -15,7 +15,7 @@
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Minimum Requirements
 
@@ -48,9 +48,9 @@ npm run dev "your command here"
 
 ---
 
-## 📚 Platform-Specific Guides
+## Platform-Specific Guides
 
-### 🐧 Linux Deployment
+### Linux Deployment
 
 **Full Guide**: [DEPLOYMENT_LINUX.md](DEPLOYMENT_LINUX.md)
 
@@ -63,8 +63,8 @@ sudo apt update && sudo apt install -y nodejs npm
 sudo dnf install nodejs npm
 
 # Verify
-node --version  # v20.x.x+
-npm --version   # 9.x.x+
+node --version # v20.x.x+
+npm --version # 9.x.x+
 
 # Install and run
 npm install
@@ -85,7 +85,7 @@ docker run -it --env-file .env cat-mail:latest
 
 ---
 
-### 🪟 Windows Deployment
+### Windows Deployment
 
 **Full Guide**: [DEPLOYMENT_WINDOWS.md](DEPLOYMENT_WINDOWS.md)
 
@@ -96,8 +96,8 @@ docker run -it --env-file .env cat-mail:latest
 # choco install nodejs -y
 
 # Verify
-node --version  # v20.x.x+
-npm --version   # 9.x.x+
+node --version # v20.x.x+
+npm --version # 9.x.x+
 
 # Install and run
 npm install
@@ -118,7 +118,7 @@ docker run -it --env-file .env cat-mail:latest
 
 ---
 
-### 🍎 macOS Deployment
+### macOS Deployment
 
 **Using Homebrew**:
 ```bash
@@ -142,7 +142,7 @@ docker run -it --env-file .env cat-mail:latest
 
 ---
 
-## 💾 Memory & Performance
+## Memory & Performance
 
 ### Memory Usage Profile
 
@@ -159,11 +159,11 @@ docker run -it --env-file .env cat-mail:latest
 ### Memory Behavior Guarantee
 
 ```
-✅ No memory leaks
-✅ Automatic cleanup every 30 seconds
-✅ Hard delete on session end
-✅ Suitable for long-running processes
-✅ Safe for resource-constrained environments (256 MB+)
+[OK] No memory leaks
+[OK] Automatic cleanup every 30 seconds
+[OK] Hard delete on session end
+[OK] Suitable for long-running processes
+[OK] Safe for resource-constrained environments (256 MB+)
 ```
 
 ### Monitor Memory Usage
@@ -174,7 +174,7 @@ docker run -it --env-file .env cat-mail:latest
 watch -n 1 'ps aux | grep node'
 
 # Or use htop
-htop  # Press 'M' to sort by memory
+htop # Press 'M' to sort by memory
 ```
 
 **Windows**:
@@ -182,7 +182,7 @@ htop  # Press 'M' to sort by memory
 # Task Manager: Ctrl+Shift+Esc
 # Or PowerShell:
 Get-Process | Where-Object {$_.ProcessName -eq "node"} | 
-  Select-Object Name, @{Name="Memory (MB)";Expression={[math]::Round($_.WorkingSet64/1MB, 2)}}
+ Select-Object Name, @{Name="Memory (MB)";Expression={[math]::Round($_.WorkingSet64/1MB, 2)}}
 ```
 
 ### Optimize Memory Usage
@@ -195,7 +195,7 @@ NODE_OPTIONS="--max-old-space-size=256" npm run dev
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ### System Diagram
 
@@ -203,20 +203,20 @@ NODE_OPTIONS="--max-old-space-size=256" npm run dev
 
 ```
 User Command
-    ↓
-[🔒 Privacy Validation] ← Blocks exports, scraping, sharing
-    ↓
-[⚡ Claude AI] ← Understands intent
-    ↓
-[🔧 Tool Router] ← Routes to appropriate operation
-    ↓
-[📧 Gmail API] ← Your OAuth credentials
-    ↓
-[💾 Data Handler] ← In-memory only processing
-    ↓
-[✅ Result] ← Returns to user
-    ↓
-[🧹 Auto-Cleanup] ← All data immediately deleted
+ 
+[ Privacy Validation] <- Blocks exports, scraping, sharing
+ 
+[ Claude AI] <- Understands intent
+ 
+[ Tool Router] <- Routes to appropriate operation
+ 
+[ Gmail API] <- Your OAuth credentials
+ 
+[ Data Handler] <- In-memory only processing
+ 
+[[OK] Result] <- Returns to user
+ 
+[ Auto-Cleanup] <- All data immediately deleted
 ```
 
 ### Key Components
@@ -233,30 +233,30 @@ User Command
 ### Privacy Flow
 
 ```
-Data Entry → Process in RAM → Generate Response → Immediate Deletion
+Data Entry -> Process in RAM -> Generate Response -> Immediate Deletion
 ```
 
 **Critical**: No email content ever touches disk. No data shared with third parties.
 
 ---
 
-## 📊 Development
+## Development
 
 ### Available Commands
 
 ```bash
 # Development
-npm run dev           # Run agent
-npm run dev "cmd"     # Run with command
+npm run dev # Run agent
+npm run dev "cmd" # Run with command
 
 # Building
-npm run build         # Compile TypeScript
-npm run typecheck     # Check types
-npm run lint          # Code linting
+npm run build # Compile TypeScript
+npm run typecheck # Check types
+npm run lint # Code linting
 
 # Testing
-npm run test          # Unit tests
-npm run test -- --watch  # Watch mode
+npm run test # Unit tests
+npm run test -- --watch # Watch mode
 
 # Production
 NODE_ENV=production npm run dev
@@ -266,30 +266,30 @@ NODE_ENV=production npm run dev
 
 ```
 cat-mail/
-├── src/
-│   ├── agent/                 # Main orchestrator
-│   ├── adapters/             # Gmail API
-│   ├── classifiers/          # Spam detection
-│   ├── security/             # Privacy layer
-│   └── utils/                # Utilities
-├── tests/                     # Unit tests
-├── DEPLOYMENT_LINUX.md       # Linux guide
-├── DEPLOYMENT_WINDOWS.md     # Windows guide
-├── MEMORY_PROFILING.md       # Memory analysis
-├── ARCHITECTURE.md           # Diagrams
-├── PRIVACY_NOTICE.md         # Privacy policy
-├── FIVE_WS.md               # Framework
-├── CLAUDE.md                # Dev guide
-└── README.md                # User guide
+|-- src/
+| |-- agent/ # Main orchestrator
+| |-- adapters/ # Gmail API
+| |-- classifiers/ # Spam detection
+| |-- security/ # Privacy layer
+| `-- utils/ # Utilities
+|-- tests/ # Unit tests
+|-- DEPLOYMENT_LINUX.md # Linux guide
+|-- DEPLOYMENT_WINDOWS.md # Windows guide
+|-- MEMORY_PROFILING.md # Memory analysis
+|-- ARCHITECTURE.md # Diagrams
+|-- PRIVACY_NOTICE.md # Privacy policy
+|-- FIVE_WS.md # Framework
+|-- CLAUDE.md # Dev guide
+`-- README.md # User guide
 ```
 
 ---
 
-## 🔒 Security & Compliance
+## Security & Compliance
 
 ### Privacy Act Compliance
 
-**NZ Privacy Act 2020**: All 13 principles implemented ✅
+**NZ Privacy Act 2020**: All 13 principles implemented [OK]
 
 **Proof**:
 - [PRIVACY_NOTICE.md](PRIVACY_NOTICE.md) - Full compliance document
@@ -299,22 +299,22 @@ cat-mail/
 ### Data Protection
 
 ```
-✅ No email storage
-✅ No contact collection
-✅ No data retention
-✅ No third-party sharing
-✅ No behavioral tracking
-✅ No data monetization
-✅ Transparent audit logs
-✅ User-controlled operations
+[OK] No email storage
+[OK] No contact collection
+[OK] No data retention
+[OK] No third-party sharing
+[OK] No behavioral tracking
+[OK] No data monetization
+[OK] Transparent audit logs
+[OK] User-controlled operations
 ```
 
 ### Security Best Practices
 
 ```bash
 # Secure .env file
-chmod 600 .env          # Linux/Mac
-# or Windows: Right-click → Properties → Security
+chmod 600 .env # Linux/Mac
+# or Windows: Right-click -> Properties -> Security
 
 # Verify no email content in logs
 grep -r "body\|subject" logs/
@@ -326,7 +326,7 @@ node --inspect dist/index.js
 
 ---
 
-## 🆘 Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 
@@ -350,12 +350,12 @@ which node
 
 ```bash
 # Find process using port 3000
-lsof -i :3000  # Linux/Mac
-netstat -ano | findstr :3000  # Windows
+lsof -i :3000 # Linux/Mac
+netstat -ano | findstr :3000 # Windows
 
 # Kill process
-kill -9 <PID>  # Linux/Mac
-taskkill /PID <PID> /F  # Windows
+kill -9 <PID> # Linux/Mac
+taskkill /PID <PID> /F # Windows
 ```
 
 #### Out of Memory
@@ -365,8 +365,8 @@ taskkill /PID <PID> /F  # Windows
 NODE_OPTIONS="--max-old-space-size=1024" npm run dev
 
 # Check available system memory
-free -h  # Linux
-wmic OS get TotalVisibleMemorySize  # Windows
+free -h # Linux
+wmic OS get TotalVisibleMemorySize # Windows
 ```
 
 #### Gmail OAuth Issues
@@ -392,7 +392,7 @@ curl -I https://accounts.google.com
 
 ---
 
-## 📈 Performance Benchmarks
+## Performance Benchmarks
 
 ### Operation Performance
 
@@ -407,15 +407,15 @@ curl -I https://accounts.google.com
 ### Scaling
 
 ```
-Single Machine:   1,000+ ops/day
-5 Users:          500 MB total
-Concurrent Ops:   Queued sequentially
-Long-Running:     No memory growth ✅
+Single Machine: 1,000+ ops/day
+5 Users: 500 MB total
+Concurrent Ops: Queued sequentially
+Long-Running: No memory growth [OK]
 ```
 
 ---
 
-## ✅ Deployment Checklist
+## [OK] Deployment Checklist
 
 ### Pre-Deployment
 
@@ -447,7 +447,7 @@ Long-Running:     No memory growth ✅
 
 ---
 
-## 📞 Support & Contact
+## Support & Contact
 
 ### Documentation
 - **Privacy**: [PRIVACY_NOTICE.md](PRIVACY_NOTICE.md)
@@ -467,7 +467,7 @@ Long-Running:     No memory growth ✅
 
 ---
 
-## 🎯 Next Steps
+## Next Steps
 
 1. **Choose Platform**: Linux, Windows, or Docker
 2. **Follow Guide**: DEPLOYMENT_LINUX.md or DEPLOYMENT_WINDOWS.md
@@ -478,20 +478,20 @@ Long-Running:     No memory growth ✅
 
 ---
 
-## 📜 Compliance Summary
+## Compliance Summary
 
 | Standard | Status | Proof |
 |----------|--------|-------|
-| **NZ Privacy Act 2020** | ✅ Compliant | [PRIVACY_NOTICE.md](PRIVACY_NOTICE.md) |
-| **Data Minimization** | ✅ Enforced | [src/security/](src/security/) |
-| **Zero Retention** | ✅ Guaranteed | In-memory only |
-| **No Third-Party Share** | ✅ Blocked | Validation layer |
-| **Transparency** | ✅ Documented | All files public |
-| **Audit Trail** | ✅ Enabled | Content-free logs |
+| **NZ Privacy Act 2020** | [OK] Compliant | [PRIVACY_NOTICE.md](PRIVACY_NOTICE.md) |
+| **Data Minimization** | [OK] Enforced | [src/security/](src/security/) |
+| **Zero Retention** | [OK] Guaranteed | In-memory only |
+| **No Third-Party Share** | [OK] Blocked | Validation layer |
+| **Transparency** | [OK] Documented | All files public |
+| **Audit Trail** | [OK] Enabled | Content-free logs |
 
 ---
 
-## 🔗 Quick Links
+## Quick Links
 
 | Resource | Purpose |
 |----------|---------|
@@ -507,8 +507,8 @@ Long-Running:     No memory growth ✅
 
 ---
 
-**Version**: 1.0  
-**Status**: ✅ Production Ready  
+**Version**: 1.0 
+**Status**: [OK] Production Ready 
 **Last Updated**: July 14, 2026
 
 **Privacy is a right. Deployment is simple. Choose your platform and get started.**
@@ -537,4 +537,4 @@ npm run dev "archive emails from 2024"
 npm run dev "remember this reply: Thanks, I'll follow up soon"
 ```
 
-All commands processed **in-memory only** with **automatic cleanup** and **zero retention**. ✅
+All commands processed **in-memory only** with **automatic cleanup** and **zero retention**. [OK]

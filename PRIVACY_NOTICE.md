@@ -10,13 +10,13 @@ The Coastal Alpine Tech (CAT) Email Agent is designed with **privacy-by-default*
 
 ## 1. What We Do NOT Do
 
-- ❌ **No Email Storage**: We do not save email contents, subjects, or metadata
-- ❌ **No Contact Collection**: We do not build or maintain contact lists
-- ❌ **No Data Retention**: Information is processed in-memory and immediately discarded after operation
-- ❌ **No Third-Party Sharing**: Your data is never shared with external services
-- ❌ **No Profiling**: We do not analyze your email patterns for marketing or profiling
-- ❌ **No Tracking**: We do not track your email behavior
-- ❌ **No Cookies/Identifiers**: No persistent identifiers are stored
+- **No Email Storage**: We do not save email contents, subjects, or metadata
+- **No Contact Collection**: We do not build or maintain contact lists
+- **No Data Retention**: Information is processed in-memory and immediately discarded after operation
+- **No Third-Party Sharing**: Your data is never shared with external services
+- **No Profiling**: We do not analyze your email patterns for marketing or profiling
+- **No Tracking**: We do not track your email behavior
+- **No Cookies/Identifiers**: No persistent identifiers are stored
 
 ---
 
@@ -26,13 +26,13 @@ The Agent processes information **only during your active request** for:
 
 | Operation | Data Used | Stored After? | Purpose |
 |-----------|-----------|---------------|---------|
-| Search emails | Query string | ❌ No | Find matching emails |
-| Read email | Email content | ❌ No | Display/analyze for your request |
-| Delete email | Email ID | ❌ No | Execute deletion |
-| Classify spam | Email content | ❌ No | Real-time classification |
-| Send email | Recipient, subject, body | ❌ No | Delivery only |
-| Block sender | Sender email address | ✅ Optional* | Only if you request "remember" |
-| Reply template | Template content | ✅ Optional* | Only if you request "remember" |
+| Search emails | Query string | No | Find matching emails |
+| Read email | Email content | No | Display/analyze for your request |
+| Delete email | Email ID | No | Execute deletion |
+| Classify spam | Email content | No | Real-time classification |
+| Send email | Recipient, subject, body | No | Delivery only |
+| Block sender | Sender email address | [OK] Optional* | Only if you request "remember" |
+| Reply template | Template content | [OK] Optional* | Only if you request "remember" |
 
 *Only stored locally in your configuration if **explicitly requested** by you.
 
@@ -48,12 +48,12 @@ The Agent processes information **only during your active request** for:
 | **PP2: Use** | Data used only for the operation you request |
 | **PP3: Access** | You control all email access via your Gmail credentials |
 | **PP4: Accuracy** | No data retained to become inaccurate |
-| **PP5: Retention** | No retention—processed in-memory only |
+| **PP5: Retention** | No retention-processed in-memory only |
 | **PP6: Information** | Full disclosure in this notice |
 | **PP7: Unique Identifiers** | No unique identifiers created |
 | **PP8: Individual Participation** | You control all inputs and operations |
 | **PP9: Individual Participation - Access** | You access email through Gmail directly |
-| **PP10: Correction of Personal Info** | Not applicable—no personal info retained |
+| **PP10: Correction of Personal Info** | Not applicable-no personal info retained |
 | **PP11: Accuracy & Safety** | Data accuracy maintained via pass-through only |
 | **PP12: Openness** | Full transparency in this notice |
 | **PP13: Information Accuracy** | No inaccurate data can accumulate |
@@ -64,16 +64,16 @@ The Agent processes information **only during your active request** for:
 
 ```
 Your Email Request
-        ↓
-    CAT Agent (In-Memory)
-        ↓
-    Gmail API (Your Credentials)
-        ↓
-    Your Gmail Account
-        ↓
-    Agent Response
-        ↓
-    [Memory Cleared]
+ 
+ CAT Agent (In-Memory)
+ 
+ Gmail API (Your Credentials)
+ 
+ Your Gmail Account
+ 
+ Agent Response
+ 
+ [Memory Cleared]
 ```
 
 **Key Principle**: Data enters, is processed, exits. No copies. No storage.
@@ -87,19 +87,19 @@ Your Email Request
 If you explicitly ask, we can remember:
 
 1. **Block List**: "Remember to block sender@spam.com"
-   - Stores only sender email addresses
-   - Used only for future delete/spam operations
-   - Stored locally in your configuration
+ - Stores only sender email addresses
+ - Used only for future delete/spam operations
+ - Stored locally in your configuration
 
 2. **Reply Templates**: "Remember this reply message"
-   - Stores template text only
-   - No recipient information
-   - Stored locally in your configuration
+ - Stores template text only
+ - No recipient information
+ - Stored locally in your configuration
 
 3. **Unsubscribe List**: "Remember to unsubscribe from this domain"
-   - Stores domain addresses only
-   - Used for future unsubscribe operations
-   - Stored locally in your configuration
+ - Stores domain addresses only
+ - Used for future unsubscribe operations
+ - Stored locally in your configuration
 
 **All stored data is encrypted and stored locally on your device only.**
 
@@ -112,7 +112,7 @@ If you explicitly ask, we can remember:
 ```typescript
 // Example guardrails enforced in code:
 
-❌ BLOCKED:
+ BLOCKED:
 - Exporting email lists
 - Creating backups of emails
 - Forwarding emails to external services
@@ -121,7 +121,7 @@ If you explicitly ask, we can remember:
 - Storing authentication tokens
 - Creating email archives
 
-✅ ALLOWED:
+[OK] ALLOWED:
 - Reading email for immediate processing
 - Deleting emails you request
 - Sending emails on your behalf
@@ -132,10 +132,10 @@ If you explicitly ask, we can remember:
 ### Audit Logging (Security Only)
 
 We maintain security logs that contain:
-- ✅ Timestamp of operations
-- ✅ Type of operation (delete, send, search)
-- ✅ Operation success/failure status
-- ❌ **Never**: Email content, sender/recipient names, email subjects
+- [OK] Timestamp of operations
+- [OK] Type of operation (delete, send, search)
+- [OK] Operation success/failure status
+- **Never**: Email content, sender/recipient names, email subjects
 
 Logs are stored locally and rotated weekly.
 
@@ -160,20 +160,20 @@ You have the right to:
 ### What We Never Store
 
 ```
-❌ Gmail Refresh Tokens (except for OAuth session)
-❌ Email Passwords
-❌ API Keys (only in your environment)
-❌ Session Information
-❌ Device Identifiers
+ Gmail Refresh Tokens (except for OAuth session)
+ Email Passwords
+ API Keys (only in your environment)
+ Session Information
+ Device Identifiers
 ```
 
 ### What Stays in Your Control
 
 ```
-✅ Your Gmail Account
-✅ Your OAuth Tokens (refresh locally, never sent to us)
-✅ Your Environment Variables
-✅ Your API Credentials
+[OK] Your Gmail Account
+[OK] Your OAuth Tokens (refresh locally, never sent to us)
+[OK] Your Environment Variables
+[OK] Your API Credentials
 ```
 
 ---
@@ -186,7 +186,7 @@ You have the right to:
 |---------|--------|-------------|---------|
 | **Gmail API** | Direct (Your Credentials) | None | Email operations |
 | **Anthropic Claude** | API Call Only | Question text only | Language processing |
-| **Telemetry** | ❌ None | None | We don't use telemetry |
+| **Telemetry** | None | None | We don't use telemetry |
 
 **Important**: Claude API processes your question/command but does NOT store it. See Anthropic's [Privacy Policy](https://www.anthropic.com/privacy).
 
@@ -207,13 +207,13 @@ We will notify you of material changes to this privacy notice by:
 
 Coastal Alpine Tech (CAT) operates under strict data minimization principles:
 
-✅ **Data Minimization**: Only process what's necessary  
-✅ **Privacy by Design**: Privacy embedded in architecture  
-✅ **Transparent Operations**: Clear about what we do/don't do  
-✅ **User Control**: You control all data operations  
-✅ **Local Processing**: Data stays on your device  
-✅ **No Monetization**: No selling or trading data  
-✅ **Ephemeral Design**: Delete-by-default architecture  
+[OK] **Data Minimization**: Only process what's necessary 
+[OK] **Privacy by Design**: Privacy embedded in architecture 
+[OK] **Transparent Operations**: Clear about what we do/don't do 
+[OK] **User Control**: You control all data operations 
+[OK] **Local Processing**: Data stays on your device 
+[OK] **No Monetization**: No selling or trading data 
+[OK] **Ephemeral Design**: Delete-by-default architecture 
 
 ---
 
@@ -233,14 +233,14 @@ We believe privacy is a right, not a feature.
 
 ```
 Traditional Email Clients:
-Email → Storage → Retrieve → Display → Store
+Email -> Storage -> Retrieve -> Display -> Store
 
 CAT Agent (In-Memory):
-Email → Process → Display → [Immediate Deletion]
-         ↓
-      Stays RAM
-         ↓
-      Lost on Agent Exit
+Email -> Process -> Display -> [Immediate Deletion]
+ 
+ Stays RAM
+ 
+ Lost on Agent Exit
 ```
 
 No hard disk. No database. No persistence.
@@ -250,31 +250,31 @@ No hard disk. No database. No persistence.
 ## Appendix B: Operation Safety Examples
 
 ```
-SAFE ✅
+SAFE [OK]
 "Delete all emails from SEEK.COM"
-→ Searches, finds emails, deletes, returns count
-→ No information retained
+-> Searches, finds emails, deletes, returns count
+-> No information retained
 
 "Show me unread emails"
-→ Lists subject lines only during response
-→ Immediately forgotten
+-> Lists subject lines only during response
+-> Immediately forgotten
 
 "Send reply: Looking forward to meeting"
-→ Composes and sends message
-→ Text not stored (except in Gmail sent folder, your choice)
+-> Composes and sends message
+-> Text not stored (except in Gmail sent folder, your choice)
 
-UNSAFE ❌ (Agent Refuses)
+UNSAFE (Agent Refuses)
 "Save all my email addresses"
-→ BLOCKED - No contact scraping
+-> BLOCKED - No contact scraping
 
 "Export my emails to CSV"
-→ BLOCKED - No data export
+-> BLOCKED - No data export
 
 "Forward emails to external service"
-→ BLOCKED - No third-party sharing
+-> BLOCKED - No third-party sharing
 
 "Remember all senders from last month"
-→ BLOCKED - No mass data retention
+-> BLOCKED - No mass data retention
 ```
 
 ---

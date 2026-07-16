@@ -1,4 +1,4 @@
-# 🚨 The Problem: Email Privacy Crisis
+# The Problem: Email Privacy Crisis
 
 **Why CAT Email Agent Exists**
 
@@ -6,41 +6,41 @@
 
 ## The Crisis We're Solving
 
-### 📊 Your Email Data is Being Harvested
+### Your Email Data is Being Harvested
 
 **Current Situation:**
-- ❌ Gmail, Outlook, Apple Mail, etc. store **everything**
-- ❌ Every email you send/receive is permanently retained
-- ❌ Your email patterns are analyzed for profit
-- ❌ Machine learning models trained on your communications
-- ❌ Data sold to advertisers, researchers, brokers
+- Gmail, Outlook, Apple Mail, etc. store **everything**
+- Every email you send/receive is permanently retained
+- Your email patterns are analyzed for profit
+- Machine learning models trained on your communications
+- Data sold to advertisers, researchers, brokers
 
 **The Impact:**
-- 👁️ Your private thoughts, relationships, health issues tracked
-- 💰 Targeted ads based on your deepest secrets
-- 🔗 Insurance companies denied coverage based on patterns
-- 💼 Employers monitoring your job search
-- 🤝 Governments accessing your communications
+- Your private thoughts, relationships, health issues tracked
+- Targeted ads based on your deepest secrets
+- Insurance companies denied coverage based on patterns
+- Employers monitoring your job search
+- Governments accessing your communications
 
-### 🚫 Third Parties Own Your Inbox
+### Third Parties Own Your Inbox
 
 **The Trust Problem:**
-- ❌ Gmail reads your emails to serve ads
-- ❌ Microsoft analyzes Outlook for business intelligence
-- ❌ Apple claims privacy but has NSA backdoors
-- ❌ Countless third-party integrations access your mail
-- ❌ No real control over who sees what
+- Gmail reads your emails to serve ads
+- Microsoft analyzes Outlook for business intelligence
+- Apple claims privacy but has NSA backdoors
+- Countless third-party integrations access your mail
+- No real control over who sees what
 
 **You think you control it. You don't.**
 
-### 🔐 Security Risk
+### Security Risk
 
 **Centralized Storage = Centralized Target:**
-- 🔓 One hack exposes millions of personal emails
-- 🔑 Password reuse means compromised email = compromised everything
-- 📧 Spam filters don't stop sophisticated phishing
-- 🗑️ "Deleted" emails can be recovered
-- 🚫 No real way to permanently destroy sensitive messages
+- One hack exposes millions of personal emails
+- Password reuse means compromised email = compromised everything
+- Spam filters don't stop sophisticated phishing
+- Deleted" emails can be recovered
+- No real way to permanently destroy sensitive messages
 
 **Real Examples:**
 - Yahoo: 3 billion accounts breached
@@ -48,158 +48,158 @@
 - Microsoft: Regular security incidents
 - All: Data breaches happen every month
 
-### ⏰ Inefficiency & Wasted Time
+### Inefficiency & Wasted Time
 
 **Manual Email Management:**
-- 🔍 Filtering spam is exhausting and ineffective
-- 📤 Repetitive emails waste hours per week
-- 🎯 No natural language automation
-- 📋 Complex folder structures that don't work
-- ⚙️ Rules are inflexible and require technical knowledge
-- 🚫 Unsubscribing from spam emails impossible
+- Filtering spam is exhausting and ineffective
+- Repetitive emails waste hours per week
+- No natural language automation
+- Complex folder structures that don't work
+- Rules are inflexible and require technical knowledge
+- Unsubscribing from spam emails impossible
 
 **Average Person Wastes:**
-- ⏱️ 28% of work time managing email
-- 📬 Receives 121 emails per day (mostly spam)
-- 🗑️ Manually deletes hundreds of messages weekly
-- 📝 Sorts emails into folders that pile up
+- 28% of work time managing email
+- Receives 121 emails per day (mostly spam)
+- Manually deletes hundreds of messages weekly
+- Sorts emails into folders that pile up
 
-### 💸 The Business Model Problem
+### The Business Model Problem
 
 **Email clients benefit from your data:**
-- 🎯 Ads served to you = ad revenue
-- 📊 Analytics on users = valuable insights
-- 🔗 Partnerships with data brokers = licensing fees
-- 💼 Business intelligence from mail patterns = premium features
-- 🤖 Training AI models on your emails = free data
+- Ads served to you = ad revenue
+- Analytics on users = valuable insights
+- Partnerships with data brokers = licensing fees
+- Business intelligence from mail patterns = premium features
+- Training AI models on your emails = free data
 
 **You are the product. Your email is the commodity.**
 
-### 📱 No Good Alternatives
+### No Good Alternatives
 
 **Existing solutions fail:**
-- ❌ Paid email (ProtonMail, etc.) - Still stores data on their servers
-- ❌ Self-hosted (Nextcloud, etc.) - Technical knowledge required
-- ❌ Privacy-focused clients - Still rely on third-party APIs
-- ❌ Email rules/filters - Complex, hard to maintain
-- ❌ VPN/encryption - Doesn't solve the core problem
+- Paid email (ProtonMail, etc.) - Still stores data on their servers
+- Self-hosted (Nextcloud, etc.) - Technical knowledge required
+- Privacy-focused clients - Still rely on third-party APIs
+- Email rules/filters - Complex, hard to maintain
+- VPN/encryption - Doesn't solve the core problem
 
 **None give you true privacy + ease of use + automation.**
 
 ---
 
-## ✅ Our Solution: CAT Email Agent
+## [OK] Our Solution: CAT Email Agent
 
-### 🔒 Zero Data Retention
+### Zero Data Retention
 
 ```
 Traditional Email Client:
-Email → [Stored on server] → [Forever retained] → [Sold to brokers]
+Email -> [Stored on server] -> [Forever retained] -> [Sold to brokers]
 
 CAT Email Agent:
-Email → [In RAM only] → [Processed] → [Immediately deleted] → [Gone forever]
+Email -> [In RAM only] -> [Processed] -> [Immediately deleted] -> [Gone forever]
 ```
 
 **You get privacy by default.**
 
-### 🚫 No Profiling, No Tracking
+### No Profiling, No Tracking
 
 **What we don't do:**
-- ❌ Store email metadata
-- ❌ Build contact lists
-- ❌ Analyze patterns
-- ❌ Train AI on your data
-- ❌ Share with third parties
-- ❌ Monetize your information
+- Store email metadata
+- Build contact lists
+- Analyze patterns
+- Train AI on your data
+- Share with third parties
+- Monetize your information
 
 **What we do:**
-- ✅ Process your request
-- ✅ Execute the operation
-- ✅ Delete everything
-- ✅ Move on
+- [OK] Process your request
+- [OK] Execute the operation
+- [OK] Delete everything
+- [OK] Move on
 
-### 🛡️ Security by Design
+### Security by Design
 
 **Built-in protections:**
-- ✅ Input validation (no injection attacks)
-- ✅ In-memory processing (no disk traces)
-- ✅ Automatic cleanup (no lingering data)
-- ✅ User credentials only (you control access)
-- ✅ Open source (transparency and auditing)
-- ✅ No remote storage (stays on your device)
+- [OK] Input validation (no injection attacks)
+- [OK] In-memory processing (no disk traces)
+- [OK] Automatic cleanup (no lingering data)
+- [OK] User credentials only (you control access)
+- [OK] Open source (transparency and auditing)
+- [OK] No remote storage (stays on your device)
 
-### 👤 You're in Control
+### You're in Control
 
 **Your credentials, your rules:**
-- ✅ OAuth 2.0 (industry standard)
-- ✅ You grant permission
-- ✅ You can revoke access anytime
-- ✅ No vendor lock-in
-- ✅ Open source - no secrets
+- [OK] OAuth 2.0 (industry standard)
+- [OK] You grant permission
+- [OK] You can revoke access anytime
+- [OK] No vendor lock-in
+- [OK] Open source - no secrets
 
-### 🤖 AI Automation Without the Privacy Cost
+### AI Automation Without the Privacy Cost
 
 **Get productivity back:**
-- ✅ Natural language commands
-- ✅ No need for complex rules
-- ✅ Spam filtering that actually works
-- ✅ One-click blocking
-- ✅ Automated replies
+- [OK] Natural language commands
+- [OK] No need for complex rules
+- [OK] Spam filtering that actually works
+- [OK] One-click blocking
+- [OK] Automated replies
 
 **But with zero data retention.**
 
-### 📖 Completely Transparent
+### Completely Transparent
 
 **Nothing hidden:**
-- ✅ Fully open source
-- ✅ Source code is auditable
-- ✅ Security documentation included
-- ✅ Privacy policy is not a novel
-- ✅ No dark patterns
+- [OK] Fully open source
+- [OK] Source code is auditable
+- [OK] Security documentation included
+- [OK] Privacy policy is not a novel
+- [OK] No dark patterns
 
-### 🎯 NZ Privacy Act Compliant
+### NZ Privacy Act Compliant
 
 **All 13 principles implemented:**
-- ✅ Collection principle
-- ✅ Use principle
-- ✅ Access principle
-- ✅ Accuracy principle
-- ✅ Retention principle
-- ✅ Information principle
-- ✅ Unique identifiers principle
-- ✅ Individual participation principle (x2)
-- ✅ Access rights principle
-- ✅ Correction principle
-- ✅ Safety principle
-- ✅ Openness principle
+- [OK] Collection principle
+- [OK] Use principle
+- [OK] Access principle
+- [OK] Accuracy principle
+- [OK] Retention principle
+- [OK] Information principle
+- [OK] Unique identifiers principle
+- [OK] Individual participation principle (x2)
+- [OK] Access rights principle
+- [OK] Correction principle
+- [OK] Safety principle
+- [OK] Openness principle
 
 **Not just claims. Actually enforced in code.**
 
 ---
 
-## 🌐 See It On GitHub
+## See It On GitHub
 
-**[View the repository →](https://github.com/fivepanelhat/CAT-mail)**
+**[View the repository ->](https://github.com/fivepanelhat/CAT-mail)**
 
 Fully open source, transparent, and ready to use.
 
 ---
 
-## 🚀 The Vision
+## The Vision
 
 **Email should be:**
-- 🔒 Private (yours alone)
-- ⚡ Effortless (natural language)
-- 🛡️ Secure (no breaches)
-- 🎯 Compliant (legally sound)
-- 📖 Transparent (open source)
-- 🚀 Fast (5-minute setup)
+- Private (yours alone)
+- Effortless (natural language)
+- Secure (no breaches)
+- Compliant (legally sound)
+- Transparent (open source)
+- Fast (5-minute setup)
 
 **CAT Email Agent delivers all of this.**
 
 ---
 
-## 📊 By The Numbers
+## By The Numbers
 
 ### Privacy Crisis
 - **3 billion** emails breached in Yahoo hack alone
@@ -219,7 +219,7 @@ Fully open source, transparent, and ready to use.
 
 ---
 
-## 🎯 Why Now?
+## Why Now?
 
 **The email privacy crisis is critical:**
 
@@ -233,13 +233,13 @@ Fully open source, transparent, and ready to use.
 
 ---
 
-## 🚀 Get Started
+## Get Started
 
 **Install in 5 minutes:**
 ```bash
-bash install.sh  # Linux/macOS
+bash install.sh # Linux/macOS
 # or
-powershell -ExecutionPolicy Bypass -File install.ps1  # Windows
+powershell -ExecutionPolicy Bypass -File install.ps1 # Windows
 ```
 
 **Try your first command:**
@@ -249,7 +249,7 @@ npm run dev "delete all spam emails"
 
 ---
 
-## 📖 Learn More
+## Learn More
 
 - **[README.md](README.md)** - Full features
 - **[QUICK_START.md](QUICK_START.md)** - Installation guide
@@ -261,6 +261,6 @@ npm run dev "delete all spam emails"
 
 **The crisis is real. The solution is here.**
 
-🔒 **Your email stays yours. Always.**
+ **Your email stays yours. Always.**
 
-🚀 **[Get started on GitHub →](https://github.com/fivepanelhat/CAT-mail)**
+ **[Get started on GitHub ->](https://github.com/fivepanelhat/CAT-mail)**
