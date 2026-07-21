@@ -50,7 +50,7 @@ Parked relative to **Byte Size Kai** and **Front_Line_Whanau** sales narratives;
 **Stage honesty (pre-seed):** Impact today is founder R&D, near-term contractors, and EDA/partner leverage. Permanent multi-region payroll follows paid pilots and revenue - we do not invent headcount claims.
 <!-- END PROBLEMS_SOLUTIONS_ECONOMY -->
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: Proprietary (CAT)](https://img.shields.io/badge/License-Proprietary%20(CAT)-8B2F45.svg)](./LICENSE)
 [![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)](https://github.com/fivepanelhat/CAT-mail/releases/tag/v1.1.0)
 [![Node.js](https://img.shields.io/badge/Node.js-18%2B-339933?logo=node.js&logoColor=white)](https://nodejs.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0%2B-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
@@ -302,9 +302,10 @@ cat-mail/
 3. **Verify**: Check the source code in `src/security/` for enforcement
 4. **Contact**: fivepanelhat@gmail.com
 
-## " License
+## License
 
-MIT
+Proprietary — © 2026 Coastal Alpine Tech Limited. All rights reserved.
+No open-source grant is implied by access to this repository; see [LICENSE](./LICENSE).
 
 ---
 

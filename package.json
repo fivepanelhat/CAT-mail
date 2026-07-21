@@ -28,11 +28,10 @@
  "privacy",
  "claude",
  "gemini",
- "open-source",
  "nz-privacy-act"
  ],
  "author": "Coastal Alpine Tech",
- "license": "MIT",
+ "license": "UNLICENSED",
  "engines": {
  "node": ">=18.0.0",
  "npm": ">=8.0.0"
