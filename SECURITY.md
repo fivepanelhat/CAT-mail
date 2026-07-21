@@ -585,3 +585,11 @@ While CAT doesn't process EU data, it follows GDPR principles:
 **Audit Level**: Comprehensive
 
 *Security is not a feature-it's a requirement.*
+
+## Fleet security principles
+
+- **No silent exfiltration** of personal or tenant operational data
+- Prefer **local-first** processing; third-party AI only with explicit operator configuration and UI/docs disclosure
+- Report vulnerabilities via GitHub Security Advisories or the maintainer contact on the org profile
+- High-stakes production changes require human approval (HITL)
+
